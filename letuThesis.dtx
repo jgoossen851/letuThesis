@@ -119,7 +119,6 @@ LaTeX version 2005/12/01 or later.
 %
 % \section{Usage}
 %
-% \changes{v1.1}{2019/07/28}{Added code for preliminary pages}
 % \subsection{Preamble Statements}
 %
 % \subsubsection{Recommended Fields}
@@ -418,9 +417,6 @@ LaTeX version 2005/12/01 or later.
 % while the left margin is 1.5 inches to allow for binding. 
 % The page numbers (in the footer) are placed 0.5 inches
 % from the body text.
-% \changes{v1.7}{2020/12/05}{Moved the page number to half
-% an inch from the page bottom, and removed the extra space
-% at the top of each page}
 % The |setspace| package is also loaded
 % for double-spacing the document.
 % The |indentfirst| package ensures that the first paragraph
@@ -446,11 +442,6 @@ LaTeX version 2005/12/01 or later.
 % (A base \LaTeX{} command to achieve double spacing is
 % |\linespread{1.6}|, though this command did not seem to
 % give as nice results.)
-% \changes{v1.2}{2019/08/02}{Changed to Times New Roman-like font}
-% \changes{v1.5}{2020/01/27}{Changed the font from tgtermes
-% (the \TeX{} Gyre Termes font, based on Times New Roman)
-% to newtx, a font with a math mode, old-style-figures,
-% but still based on Times New Roman.}
 %    \begin{macrocode}
 \RequirePackage[largesc]{newtxtext}
 \RequirePackage[varg]{newtxmath}
@@ -600,9 +591,6 @@ LaTeX version 2005/12/01 or later.
 % \end{macro}
 %
 % \begin{macro}{\centersectionwithnumber}
-% \changes{v1.7}{2020/12/05}{Adds the new fine-tuning macros
-% |centersectionwithnumber|, |nosubsectionnumbers|, and
-% |setsubsubsecprestretch|}
 % Define the default formatting of section numbers inside a left
 % overlap macro. Then provide a new macro to overwrite the default
 % definition to disable the left overwrite.
@@ -656,8 +644,6 @@ LaTeX version 2005/12/01 or later.
 % |\makeabstract|, and |\makeacknowledgments|.
 %
 % \subsubsection{Title Page}
-% \changes{v1.7}{2020/12/05}{Fixed the spacing between the
-% University and School name}
 % First, a |\def| is used to define formatting to be
 % repeated on both the title and signatures page.
 % Spacing within this command has no stretchable glue,
@@ -696,8 +682,6 @@ LaTeX version 2005/12/01 or later.
 % If not already explicitly defined, the
 % \DescribeMacro{\@titlepageauthor}|\@titlepageauthor|
 % is defined as the thesis author.
-% \changes{v1.2}{2019/08/02}{Formatted title pages to have
-% the same margins as the rest of the document}
 %    \begin{macrocode}
 \renewcommand{\maketitle}{%
   \chapter*{\@university}
@@ -760,7 +744,6 @@ LaTeX version 2005/12/01 or later.
 % The signature lines are typset using the internal macro
 % \DescribeMacro{\@typesetCommittee}|\@typesetCommittee|, 
 % described below.
-% \changes{v1.5}{2020/1/31}{Added negative space below committee to keep final |\vfill| on the same page with a 3-line title.}
 %    \begin{macrocode}
 \newcommand{\makesignatures}{%
   \chapter*{\@university}
@@ -808,7 +791,6 @@ LaTeX version 2005/12/01 or later.
 %
 % The header is centered on the top lines, and the text of the copyright statement
 % is spaced in a paragraph below.
-% \changes{v1.2}{2019/08/02}{Updated copyright symbol}
 %    \begin{macrocode}
 \RequirePackage{textcomp}
 \newcommand{\makecopyright}{%
@@ -861,8 +843,6 @@ LaTeX version 2005/12/01 or later.
 % containing the number of words to display. Then, If that field is empty,
 % the auto-count function is skipped and the |\@abstractwordcount| macro
 % is set to the value given. Otherwise, the auto-count function will run.
-% \changes{v1.5}{2020/01/29}{Added optional argument to abstract macro
-% to overwrite the auto-counter.}
 %    \begin{macrocode}
   \def\count@given{#1}
   \newcount\@abstractwordcount
@@ -933,8 +913,7 @@ LaTeX version 2005/12/01 or later.
 % \begin{macro}{\makeacknowledgments}
 % The |\makeacknowledgments| macro typesets the acknowledgments page.
 % The acknowledgment starts a new unnumbered chapter and adds the chapter to the
-% Table of Contents. 
-% \changes{v1.2}{2019/08/02}{Added command for Acknowledgments}
+% Table of Contents.
 %    \begin{macrocode}
 \newcommand{\makeacknowledgments}[1]{%
   \chapter*{Acknowledgments}
@@ -1153,7 +1132,6 @@ LaTeX version 2005/12/01 or later.
 % |\quad| space. There is 0 points of separation between the section
 % number and the section title. No special format is applied before the
 % section title is typeset.
-% \changes{v1.2}{2019/08/02}{Adjusted margins to keep numbers from overflowing}
 %    \begin{macrocode}
 \RequirePackage{changepage}
 \titleformat{\section}[block]{%
@@ -1171,8 +1149,6 @@ LaTeX version 2005/12/01 or later.
 % A ragged-right argument is also supplied to let full title lines 
 % move onto the next line
 % without hyphenating or spilling into the margin.
-% \changes{v1.4}{2019/08/21}{Added ragged-right argument 
-% to subsection titles.}
 %    \begin{macrocode}
 \titleformat{\subsection}[hang]%
   {\normalfont\itshape\singlespacing\raggedright}
@@ -1188,8 +1164,6 @@ LaTeX version 2005/12/01 or later.
 % No space is specified between the label (which does not exist) and the
 % subsubsection title. The title is preceded by a horizontal space equal to a
 % paragraph indentation and is followed by a colon before the text of the paragraph.
-% \changes{v1.7}{2020/12/05}{Fixed the spacing of subsubsections
-% using the |titlespacing| command}
 %    \begin{macrocode}
 \titleformat{\subsubsection}[runin]%
   {\normalfont}{}{0pt}{}[:]
@@ -1220,10 +1194,6 @@ LaTeX version 2005/12/01 or later.
 % Text on lines before the last cannot be within half and inch
 % of the page numbers.
 % The optional arguments adds extra space for these rows.
-% \changes{v1.2}{2019/08/02}{Increased right-indent on multi-line \toc entries}
-% \changes{v1.7}{2020/12/05}{Set the right-indent on multi-line
-% \toc entries to 0.5 inches beyond the reserved space, ensuring that
-% the text does not get within 0.5 inches of the page number.}
 %    \begin{macrocode}
 \contentsmargin[0.5in]{2em}
 %    \end{macrocode}
@@ -1258,8 +1228,6 @@ LaTeX version 2005/12/01 or later.
 % The extra vertical space of |0.6\baselineskip| that was added
 % by the chapter title and the extra |\baselineskip| from the second
 % |\par| command are removed with the |\vspace| command.
-% \changes{v1.7}{2020/12/50}{Adds negative vertical space between
-% the title and entries of the \toc, \lot, and \lof}
 % The \toc is set to display headings from 4 levels:
 % Chapters, Sections, Subsections, and Subsubsections.
 %     \begin{macrocode}
@@ -1274,8 +1242,6 @@ LaTeX version 2005/12/01 or later.
 % Then, turn off hyphenation while typesetting the \toc.
 % Finally, do the rest of the commands
 % for typesetting the table of contents.
-% \changes{v1.2}{2019/08/02}{Edited the |tableofcontents|
-% macro to add the page to the \toc and change the name}
 %    \begin{macrocode}
 \let\oldtableofcontents\tableofcontents
 \def\tableofcontents{%
@@ -1298,7 +1264,6 @@ LaTeX version 2005/12/01 or later.
 % spacing later on only applies to the first line.
 % |\filright| from the |titlesec| package is used to keep from 
 % justifying the \toc entry.
-% \changes{v1.7}{2020/12/05}{Removed justification from the \toc}
 % The next two fields, \meta{numbered-format} and
 % \meta{numberless-format} give the formatting for
 % numbered and unnumbered sections respectively.
@@ -1311,12 +1276,6 @@ LaTeX version 2005/12/01 or later.
 % A |\quad| space is added after the chapter 
 % number to match the hanging indent already specified.
 % Then, the leader-line and page number are typeset.
-% \changes{v1.2}{2019/08/02}{Added penalties to keep
-% chapter names from overfilling lines.
-% Added hanging indent to align left sides.}
-% \changes{v1.5}{2020/01/27}{Removed the |\MakeUppercase|
-% macros and applied them
-% elsewhere to enable the |hyperref| package to be used.}
 %    \begin{macrocode}
 \newlength{\normalparindent}
 \setlength{\normalparindent}{\parindent}
@@ -1395,7 +1354,6 @@ LaTeX version 2005/12/01 or later.
 %
 %
 % \subsubsection{List of Tables/Figures}
-% \changes{v1.7}{2020/12/50}{Formats the \lot and \lof}
 % The List of Figures and the List of Tables are unnumbered chapters
 % and therefore need to be capitalized separately.
 % The macros |\listfigurename| and |\listtablename| are
@@ -1530,7 +1488,6 @@ LaTeX version 2005/12/01 or later.
 % \end{macro}
 %
 % \subsection{Environments}
-% \changes{v1.6}{2020/07/06}{Added the |thesistable| environment}
 % \subsubsection{Tables}
 % Formal table formatting is used from the |booktabs| package. Additionally,
 % the |longtable| package is used for tables spanning multiple pages. Then,
@@ -1559,7 +1516,6 @@ LaTeX version 2005/12/01 or later.
 % value that expands to the |\relax| macro.
 % Several macros are defined, that when expanded, will evaluate to the same thing if
 % the optional arguments were not provided.
-% \changes{v1.6}{2020/07/27}{Edited the |\||ifx| statements}
 %    \begin{macrocode}
 \RequirePackage{xargs}
 \newenvironmentx{thesistable}[6][1=\relax, 3=\relax]{
@@ -1654,7 +1610,6 @@ LaTeX version 2005/12/01 or later.
 %
 %
 % \subsection{Other Spacing}
-% \changes{v1.5}{2020/01/27}{Added spacing modifications for equations}
 % Using the double-spaced formatting causes the spacing around equations to be messed up.
 % The |\normalsize| macro is redefined to update the equation spacing. The skip spaces
 % before and after equations are defined with 3pts of stretchable length. If needed, \LaTeX{}
@@ -1677,19 +1632,14 @@ LaTeX version 2005/12/01 or later.
 %
 %
 % \subsection{Footnotes}
-% \changes{v1.3}{2019/08/02}{Added formatting for footnotes}
 % To help with formatting for footnotes, the |footmisc| package is used. This package is loaded with
 % several options that define the base footnote formatting. The option |multiple| places a comma between
 % Two footnotes placed at the same spot. The option |hang| formats the footnotes as hanging paragraphs.
 % The option |perpage| resets the numbering of the footnotes on each page. (Note that pdfLaTeX may need
 % to be run twice to correctly place and number all footnotes on the correct pages.)
 % The option |symbol*| uses a set of symbols instead of numerals to number the footnotes.
-% \changes{v1.4}{2019/08/21}{Added the bottom 
-% option when loading footnote package.}
 % The |bottom| option ensures that footnotes are typeset
 % below floats.
-% \changes{v1.8}{2020/12/07}{Adds the |stable| option to
-% |footmisc| package} 
 % The |stable| option keeps |footmisc| from
 % including footnotes that appear in section titles in the \toc.
 %    \begin{macrocode}
