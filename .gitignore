@@ -1,0 +1,21 @@
+# LaTeX Generated files
+*.sty
+*.pdf
+*.aux
+*.bbl
+*.blg
+*.glo
+*.gls
+*.synctex.gz
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.synctex(busy)
+*.gz
+*.pfg
+*.oldaux
