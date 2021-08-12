@@ -1,3 +1,5 @@
+% Notes:
+% shell escape must be enabled
 \documentclass[12pt, oneside]{report}
 
 %Debugging packages and commands:
@@ -10,6 +12,8 @@
 
 % LETU Thesis Formatting
 \usepackage{\main/letuThesis}
+\usepackage[crop=pdfcrop]{pstool}
+\usepackage{standalone} % for inputting tikz pictures
 
 %\newcommand{\cftdot}{\ast}
 %\newcommand{\cftdotsep}{2}
@@ -73,8 +77,8 @@
 %\titlepageauthor{J. Goossen}
 
 \usepackage{graphicx}
-\graphicspath{ {\main/chapters/modules/pictures/} }
-\usepackage{hyperref}
+\graphicspath{ {\main/figures/} }
+\usepackage[hidelinks]{hyperref}
 \begin{document}
 
 \frontmatter
@@ -91,101 +95,102 @@ I'd like to acknowledge everyone who made this possible. Thanks!\par}
 
 \tableofcontents
 
-\clearpage
-\addcontentsline{toc}{chapter}{List of Tables}
-\chapter*{List of Tables}
+%\clearpage
+%\addcontentsline{toc}{chapter}{List of Tables}
+%\chapter*{List of Tables}
+\listoftables
 
-\clearpage
-\addcontentsline{toc}{chapter}{List of Figures}
-\addtocontents{lof}{~\hfill Page\par}
+%\clearpage
+%\addcontentsline{toc}{chapter}{List of Figures}
+%%\addtocontents{lof}{~\hfill Page\par}
 \listoffigures
 
 
 
 
 
-\mainmatter % Switch to arabic numbering
+\mainmatter % Switch to Arabic numbering
 
 \chapter{Introduction}
 \lipsum[1]
 %\section{Suspendisse vitae elit. Aliquam arcu neque, ornare in, ullamcorper quis, commodo eu, libero.} % \lipsum[10][1-2]
 \section{\lipsum[150][1-3]}
-\lipsum[3]
-\footnote{This is simply the ubiquitous ``Lipsum'' placeholder text for typesetting. This is a long footnote, and extends to more than just a single line.}
+\lipsum[3]%
+\footnote{This is simply the ubiquitous ``Lorem Ipsum'' placeholder text for typesetting. This is a long footnote, and extends to more than just a single line.}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=.7\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram1}
 \end{figure}
   
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \psfragfig[width=.99\textwidth]{figures/plots/placeholder}{}
   \caption{The caption of the figure which is much longer than the other captions, since it should flow to the next line every time}
   \label{fig:BlockDiagram2}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includestandalone[mode=buildnew]{figures/diagrams/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram3}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}
@@ -225,7 +230,7 @@ I'd like to acknowledge everyone who made this possible. Thanks!\par}
 \chapter{Another}
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}
@@ -254,7 +259,7 @@ I'd like to acknowledge everyone who made this possible. Thanks!\par}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.25\textwidth]{F35 Landing}
+  \includegraphics[width=0.5\textwidth]{pictures/placeholder}
   \caption{The caption of the figure}
   \label{fig:BlockDiagram4}
 \end{figure}

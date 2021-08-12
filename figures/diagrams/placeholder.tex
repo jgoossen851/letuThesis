@@ -1,15 +1,13 @@
 % Define main, allowing the standalone to automatically be recompiled from any directory
-\IfFileExists{./Thesis.tex}{\providecommand{\main}{.}}{
-	\IfFileExists{../Thesis.tex}{\providecommand{\main}{..}}{
-		\IfFileExists{../../Thesis.tex}{\providecommand{\main}{../..}}{
+\IfFileExists{./ExampleThesis.tex}{\providecommand{\main}{.}}{
+	\IfFileExists{../ExampleThesis.tex}{\providecommand{\main}{..}}{
+		\IfFileExists{../../ExampleThesis.tex}{\providecommand{\main}{../..}}{
 			\providecommand{\main}{../../..}}}}
-			
+
 \documentclass[border=0.7mm, tikz]{standalone}
 %\documentclass[border=6mm]{standalone} % Larger border for context
 
-\input{\main/chapters/modules/diagrams/tikzStyle}
-\input{\main/style}
-\input{\main/notation}
+\input{\main/figures/diagrams/tikzStyle}
 
 \begin{document}
 \begin{tikzpicture}
