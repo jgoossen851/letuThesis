@@ -1275,6 +1275,9 @@ LaTeX version 2005/12/01 or later.
 % typeset the chapter name and number, including a colon.
 % A |\quad| space is added after the chapter 
 % number to match the hanging indent already specified.
+% Note that the label is placed in an |\rlap| environment
+% to make chapter labels for chapters greater than 10
+% line up with the previous labels.
 % Then, the leader-line and page number are typeset.
 %    \begin{macrocode}
 \newlength{\normalparindent}
@@ -1282,7 +1285,8 @@ LaTeX version 2005/12/01 or later.
 \titlecontents{chapter}[0in]{%
     \singlespacing\hangindent=1em\filright}%
   {\contentspush{%
-      \MakeUppercase\@tocChapterName~\thecontentslabel:}\quad%
+      \MakeUppercase\@tocChapterName~%
+      \rlap{\thecontentslabel:}\hphantom{0:}}\quad%
   }{}{\leaderStyle\contentspage}
 %    \end{macrocode}
 %
