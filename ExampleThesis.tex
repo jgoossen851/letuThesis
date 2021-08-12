@@ -198,7 +198,7 @@ I'd like to acknowledge everyone who made this possible. Thanks!\par}
 
 %This paragraph references Figure \ref{fig:BlockDiagram1}, and should be clickable.
 
-\lipsum[4]
+\lipsum[4]%
 \footnote{Another paragraph from the same source.}\footnote{And something else I remembered that merits its own footnote.}
 
 \subsection{Subsection Title}
@@ -224,6 +224,19 @@ I'd like to acknowledge everyone who made this possible. Thanks!\par}
 \lipsum[7]
 
 \chapter{One}
+
+This page contains a sample table.
+
+\begin{thesistable}[htbp]
+{c c c}
+[A Simple Table]
+{A Simple Table. Note that this table has some extra information added to the caption at this point in the text, but this extra text will not appear in the List of Tables.}
+{tab:sampletable}
+{First & Second & Third}
+Data 1 & Data 2 & Data 3 \\
+Data 4 & Data 5 & Data 6 \\
+\end{thesistable}
+
 \chapter{Another}
 \chapter{Another}
 \chapter{Another}
