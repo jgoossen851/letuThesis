@@ -111,9 +111,10 @@ LaTeX version 2005/12/01 or later.
 % \maketitle
 %
 % \section{Introduction}
-% This class formats a \LaTeX{} document according to LeTourneau University's guidelines
-% for Master's Thesis papers. This package correlates to version 1.4 of the University's
-% guidelines, published September 2019.
+% This class formats a \LaTeX{} document according to LeTourneau University's
+% guidelines for Master's Thesis papers.
+% This package correlates to version 1.4 of the University's guidelines,
+% published September 2019.
 %
 
 %
@@ -132,17 +133,18 @@ LaTeX version 2005/12/01 or later.
 % the title page, they can be entered using the macros, |\\|, |\break|, |\par|,
 % or |\newline|. The title appears on the title page, on the signature page, and
 % with all line-breaks removed on the abstract.
+% Default: {\itshape How to Prepare \textbackslash \textbackslash\ 
+% the Perfect Thesis Document}.
 %
-% Note: all line-breaks are converted to |\break| with string replacement following
+% Note: All line-breaks are converted to |\break| with string replacement following
 % a single expansion. Therefore, if a |\\|, |\break|, or |\newline| is saved as a new
 % command used in the title, the syntax will break. Saving a |\par| as a new command
 % and entering it into the title will create a new line on the title page, signature page,
 % and the abstract.
-% Default: {\itshape How to Prepare \textbackslash \textbackslash\ the Perfect Thesis Document}.
 %
 % \DescribeMacro{\author}
-% This macro sets the author name for the title page, signature page, copyright page,
-% and abstract.
+% This macro sets the author name for the title page, signature page,
+% copyright page, and abstract.
 % If necessary, the names on the title page and signature
 % page can be given a different format by defining alternate text using the
 % |\titlepageauthor| and |\signaturepageauthor| macros described below.
@@ -352,6 +354,7 @@ LaTeX version 2005/12/01 or later.
 % The contents of the table should go between the |\begin| and |\end| directives
 % of the environment, formatted with the row and column separators
 % (|&| and |\\| respectively) like any other table.
+% The last row of the table must contain the column separator (|\\|) to avoid errors.
 %
 %
 % \section{Known Bugs}
@@ -411,7 +414,7 @@ LaTeX version 2005/12/01 or later.
 %
 % \subsection{Basic Geometry and Typesetting}
 %
-% Load the packages needed for formating. The |geometry| package
+% Load the packages needed for formatting. The |geometry| package
 % provides options for setting the margins. The package is loaded with
 % options specifying that all margins should be 1 inch,
 % while the left margin is 1.5 inches to allow for binding. 
@@ -627,7 +630,8 @@ LaTeX version 2005/12/01 or later.
 %
 %
 % \begin{macro}{\setcontentslabelwidth}
-% Define the default width for the labels in the List of Tables and List of Figures, and define a command to overwrite the default value.
+% Define the default width for the labels in the List of Tables and List of Figures,
+% and define a command to overwrite the default value.
 %    \begin{macrocode}
 \newlength{\contents@labelwidth}
 \setlength{\contents@labelwidth}{0.4in}
@@ -741,7 +745,7 @@ LaTeX version 2005/12/01 or later.
 % \DescribeMacro{\@signaturepageauthor}|\@signaturepageauthor| is defined
 % as the thesis author.
 %
-% The signature lines are typset using the internal macro
+% The signature lines are typeset using the internal macro
 % \DescribeMacro{\@typesetCommittee}|\@typesetCommittee|, 
 % described below.
 %    \begin{macrocode}
@@ -1061,7 +1065,7 @@ LaTeX version 2005/12/01 or later.
 % using Roman numerals), the chapter titles should be typeset in normal text.
 % However, for the mainmatter (content in the main content sections with 
 % Arabic numeral numbering), the 
-% chapter label should be normal but the chapter title should be bolded.
+% chapter label should be normal but the chapter title should be emboldened.
 % This macro is initialized to bold the text as for the mainmatter,
 % causing individual chapters to be typeset correctly without needing to call
 % the |\mainmatter| command (doing so could cause problems with page
@@ -1096,7 +1100,7 @@ LaTeX version 2005/12/01 or later.
 % between the section number and the section title.
 % The \meta{before-code} formats the title and makes the title
 % uppercase. As describe above, the |\@chapterFontStyle| macro
-% will either keep the text normally formatted or bolded,
+% will either keep the text normally formatted or emboldened,
 % depending on the section.
 % Finally, |\titlespacing| is used to add an extra inch before the title
 % (making the total margin 2 inches).
@@ -1636,11 +1640,13 @@ LaTeX version 2005/12/01 or later.
 %
 %
 % \subsection{Footnotes}
-% To help with formatting for footnotes, the |footmisc| package is used. This package is loaded with
-% several options that define the base footnote formatting. The option |multiple| places a comma between
-% Two footnotes placed at the same spot. The option |hang| formats the footnotes as hanging paragraphs.
-% The option |perpage| resets the numbering of the footnotes on each page. (Note that pdfLaTeX may need
-% to be run twice to correctly place and number all footnotes on the correct pages.)
+% To help with formatting for footnotes, the |footmisc| package is used.
+% This package is loaded with several options that define the base footnote formatting.
+% The option |multiple| places a comma between two footnotes placed at the same spot.
+% The option |hang| formats the footnotes as hanging paragraphs.
+% The option |perpage| resets the numbering of the footnotes on each page.
+% (Note that pdfLaTeX may need to be run twice to correctly place and number
+% all footnotes on the correct pages.)
 % The option |symbol*| uses a set of symbols instead of numerals to number the footnotes.
 % The |bottom| option ensures that footnotes are typeset
 % below floats.
