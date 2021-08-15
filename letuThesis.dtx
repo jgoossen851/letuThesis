@@ -116,7 +116,6 @@ LaTeX version 2005/12/01 or later.
 % This package correlates to version 1.4 of the University's guidelines,
 % published September 2019.
 %
-
 %
 % \section{Usage}
 %
@@ -357,6 +356,38 @@ LaTeX version 2005/12/01 or later.
 % The last row of the table must contain the column separator (|\\|) to avoid errors.
 %
 %
+% \section{Graphics Commands}
+%
+% This package also defines several commands to help typeset figures in a consistent manner.
+% These commands should be used within a |figure| environment before the |\caption|
+% and |\label| commands. For image files such as |.jpg| or |.png| files, use the
+% |\includegraphics| \DescribeMacro{\includegraphics}
+% command from the |graphicx| package.
+% 
+% e.g. |\includegraphics[width=.5\textwidth]{figures/pictures/image}|
+%
+% \DescribeMacro{\includediagram}
+% The |\includediagram| macro is intended for Ti\emph{k}Z diagrams.
+% It is a simple wrapper function for the |\includestandalone| command
+% from the |standalone| package with a similar interface to |\includegraphis|
+% from the |graphicx| package. No optional arguments are supported--the size of
+% the diagram is set by the Ti\emph{k}Z source.
+% The diagram will be recompiled if the source file was changed, otherwise,
+% the already-compiled PDF will be used.
+%
+% e.g. |\includediagram{figures/diagrams/flowchart}|
+%
+% \DescribeMacro{\includeplot}
+% The |\includeplot| macro is intended for MATLAB figures processed by the
+% LaPrint\footnote{\url{https://www.mathworks.com/matlabcentral/fileexchange/4638-laprint}}
+% MATLAB function.
+% The |\includeplot| macro is a wrapper for the |\psfragfig| command from the |\pstool| package.
+% It supports optional arguments like the |\includegraphics| command.
+%
+% e.g. |\includeplot[width=.5\textwidth]{figures/plots/graph}|
+%
+%
+%
 % \section{Known Bugs}
 % If section numbers are left turned on in the body of the document and a section
 % label take almost the whole line or more than a line, the section number can
@@ -395,16 +426,10 @@ LaTeX version 2005/12/01 or later.
 % 
 % |}|
 %
-% \section{To Do}
-% Some of these have already been implemented, other still have not.
-% These items came from the lab white-board where they were
-% originally brainstormed.
-% \begin{itemize}
-% \item Ensure that the format for all commands [|\macro|]
-% is consistent.
-% \item Add and if/then construct to disable the reduced margin
-% sizes in the |\section| headings.
-% \end{itemize}
+% Plots added to the document using the |\includeplot| command may be slightly larger than
+% the specified width due to the overlaid text extending outside the |.eps| figure's bounding box.
+% In most cases, using the optional argument |[width=0.99\textwidth]| fixes bad-box errors.
+%
 %
 % \StopEventually{\PrintChanges}
 %
@@ -1616,6 +1641,25 @@ LaTeX version 2005/12/01 or later.
 }
 %    \end{macrocode}
 %
+%
+% \subsection{Graphics Commands}
+%
+% Use the |\includegraphics| command from the |graphicx| package.
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+%    \end{macrocode}
+% For Ti\emph{k}Z diagrams, use the |standalone| package and create a wrapper macro.
+%    \begin{macrocode}
+\RequirePackage{standalone}
+\newcommand{\includediagram}[1]{\includestandalone[mode=buildnew]{#1}}
+%    \end{macrocode}
+% For MATLAB plots exported using LaPrint, use the |pstool| package and create
+% a wrapper macro.
+%    \begin{macrocode}
+\RequirePackage[crop=pdfcrop]{pstool}
+\newcommand{\includeplot}[2][]{\psfragfig[#1]{#2}{}}
+%    \end{macrocode}
+% 
 %
 % \subsection{Other Spacing}
 % Using the double-spaced formatting causes the spacing around equations to be messed up.
