@@ -15,51 +15,6 @@
 \usepackage[crop=pdfcrop]{pstool}
 \usepackage{standalone} % for inputting tikz pictures
 
-%\newcommand{\cftdot}{\ast}
-%\newcommand{\cftdotsep}{2}
-%% Change parameters for the LOF and LOT
-%\makeatletter
-%\renewcommand\@pnumwidth{1.55em} % Width for the page number to be typeset, default 1.55em
-%\renewcommand\@tocrmarg{2em} % Margin between right margin and end of leader lines, default 2.55em
-%\renewcommand\@dotsep{.5} % Separation between leader line dots, units=?
-%
-%\usepackage{tocloft}
-
-%
-%\makeatletter
-%% Place the label in a \rlap to make chapters labels greater than 10 line up with same spacing
-%\titlecontents{chapter}[0in]{
-%    \pretolerance=1000\tolerance=1000\emergencystretch=1em
-%    \singlespacing\hangindent=1em
-%    }
-%  {\contentspush{%
-%      \MakeUppercase\@tocChapterName~\rlap{\thecontentslabel:}\hphantom{0:}}\quad
-%    \MakeUppercase
-%  }%
-%  {\MakeUppercase}%
-%  {\leaderStyle\contentspage}
-%\makeatother
-%
-%\titlecontents{figure}[0in]%
-%  {\singlespacing}{\contentspush{\rlap{\thecontentslabel}\hspace{2.5em}}}{}% 2.5em space between left margin and caption label text
-%  {\leaderStyle\contentspage}
-%
-%\makeatother
-
-%% Remove the extra space from between chapters in the lof/lot: https://tex.stackexchange.com/questions/121879/remove-spacing-between-per-chapter-figures-in-lof
-%% Would be nice to place in an option...
-%\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
-%\makeatletter
-%% \patchcmd{<cmd>}{<search>}{<replace>}{<succes>}{<failure>}
-%\patchcmd{\@chapter}{\addtocontents{lof}{\protect\addvspace{10\p@}}}{}{}{}
-%\patchcmd{\@chapter}{\addtocontents{lot}{\protect\addvspace{10\p@}}}{}{}{}
-%\makeatother
-
-%\usepackage{hyperref}
-%%	\usepackage[linktocpage=true]{hyperref}
-% above needs \phantomsection before calls to \addcontentsline
-
-
 % External Packages
 \usepackage{lipsum}
 
