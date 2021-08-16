@@ -191,7 +191,7 @@ LaTeX version 2005/12/01 or later.
 %
 % The following fields are not necessary to typeset an appropriate set of preliminary pages,
 % but they may be needed to specify a different format when the automatic formatting
-% done by \LaTeX{} is incorrect or does not meet the template.
+% done by \LaTeX{} is incorrect or does not meet the template specifications.
 %
 % \DescribeMacro{\director}
 % This macro allows overwriting the thesis director's name in the Abstract.
@@ -306,24 +306,31 @@ LaTeX version 2005/12/01 or later.
 % The |\makeacknowledgments| macro typesets the acknowledgments page.
 %
 %
-% \section{Environments}
+% \section{Tables and Graphics}
+% Specific guidelines are not provided in the Thesis guidelines for the
+% formatting of tables and graphics within the thesis document.
+% However, several environments and macros are provided for
+% easy access to aesthetic and consistent formatting.
+% \subsection{Tables}
 % \DescribeEnv{thesistable}
-% Tables for the thesis are given a specific environment to enable easy access
-% to good-looking and consistent formatting. Table design is not specified in the
+% Table design is not specified in the
 % LeTourneau University Thesis guidelines, so alternative designs may be used
 % by loading separate packages.
-% The |thesistable| environment can either typeset a floating table or a multi-page
-% ``longtable'' at the current position in the text. The environment takes six arguments,
+% The |thesistable| environment can either typeset a floating table or a long multi-page
+% table at the current position in the text. The environment takes six arguments,
 % some of which are optional, as described below:
 % \begin{enumerate}
 % \item \oarg{placementSpecifier} The first argument is optional and contains
-% the desired float position of the table. \textbf{If provided}, the table will be typeset as
+% the desired float position of the table. 
+% \begin{itemize}
+% \item If provided, the table will be typeset as
 % a floating table and must fit on a single page. The \meta{placementSpecifier}
 % field should be in the same format as would be provided to any other float,
 % e.g., |[!htb]|. The table will by typeset using the underlying |tabular| and |table| environments.
-% \textbf{If omitted}, the table will be typeset at the current position in the text, but
+% \item If omitted, the table will be typeset at the current position in the text, but
 % can span multiple pages. The table will be typeset using the underlying |longtable|
 % environment from the |longtable.sty| package.
+% \end{itemize}
 % \item \marg{columnAlignment} The second argument contains the column format,
 % specified in the same way as it would be for the |tabular| environment. Each column
 % desired in the table should be represented using a letter to encode the desired text
@@ -356,7 +363,9 @@ LaTeX version 2005/12/01 or later.
 % The last row of the table must contain the column separator (|\\|) to avoid errors.
 %
 %
-% \section{Graphics Commands}
+% \subsection{Graphics Commands}
+%
+% \subsubsection{Pictures}
 %
 % This package also defines several commands to help typeset figures in a consistent manner.
 % These commands should be used within a |figure| environment before the |\caption|
@@ -366,17 +375,23 @@ LaTeX version 2005/12/01 or later.
 % 
 % e.g. |\includegraphics[width=.5\textwidth]{figures/pictures/image}|
 %
+% \subsubsection{Diagrams}
 % \DescribeMacro{\includediagram}
-% The |\includediagram| macro is intended for Ti\emph{k}Z diagrams.
+% The |\includediagram| macro is used to place an image of a compiled \LaTeX{} page in the current document.
+% It is intended for use with Ti\emph{k}Z diagrams compiled as standalone documents.
 % It is a simple wrapper function for the |\includestandalone| command
-% from the |standalone| package with a similar interface to |\includegraphis|
-% from the |graphicx| package. No optional arguments are supported--the size of
-% the diagram is set by the Ti\emph{k}Z source.
-% The diagram will be recompiled if the source file was changed, otherwise,
-% the already-compiled PDF will be used.
+% from the |standalone| package with a similar interface to |\includegraphics|
+% from the |graphicx| package. No optional arguments are supported---the size of
+% the diagram is set by the source document.
+% The diagram will be recompiled if the compiled |.pdf| is older than the |.tex| source file or if the |.pdf| file does not yet exist.
+% Otherwise, the already-compiled |.pdf| will be used.
+%
+% The \emph{shell escape} option must be enabled to use this command.
+% See the section on the \emph{shell escape} option below.
 %
 % e.g. |\includediagram{figures/diagrams/flowchart}|
 %
+% \subsubsection{MATLAB plots}
 % \DescribeMacro{\includeplot}
 % The |\includeplot| macro is intended for MATLAB figures processed by the
 % LaPrint\footnote{\url{https://www.mathworks.com/matlabcentral/fileexchange/4638-laprint}}
@@ -384,28 +399,41 @@ LaTeX version 2005/12/01 or later.
 % The |\includeplot| macro is a wrapper for the |\psfragfig| command from the |\pstool| package.
 % It supports optional arguments like the |\includegraphics| command.
 %
+% The \emph{shell escape} option must be enabled to use this command.
+% See the section on the \emph{shell escape} option below.
+%
 % e.g. |\includeplot[width=.5\textwidth]{figures/plots/graph}|
 %
+% \subsubsection{The \emph{shell escape} option}
+% Both the |standalone| package to typeset diagrams and the
+% |pstool| package used to typeset plots make use of additional \LaTeX{} commands that are typically disabled by default for security reasons.
+% To enable these commands, the ``shell escape'' option needs to be enabled.
 %
+% From the command line, add |--shell-escape| as an argument for the program |pdflatex.exe| before the file name to typeset.
+% In TeXworks, click on ``Edit $>$ Preferences.'' Under the ``Typesetting'' tab, select the processing tool you want to modify.
+% Click ``Edit'' and add |--shell-escape| before the |$fullname| variable.
 %
 % \section{Known Bugs}
+% \begin{enumerate}
+% \item
 % If section numbers are left turned on in the body of the document and a section
 % label take almost the whole line or more than a line, the section number can
 % be pushed outside of the page margins. The section number is typeset as if it had
 % no width in order to preserve the centered look of the text itself. Line breaks should
 % manually be added to the title.
 %
+% \item
 % Upon loading a new version of MiKTeX on another computer,
 % my \LaTeX{} documents would no longer compile.
 % It seems that the fonts were not being loaded right,
 % and pdfLaTeX was not able to typeset the document.
 % I was getting the error message, ``Font ec-qtmr at 480 not found.''
+% 
 % This problem was fixed by following the steps as laid out by ltcomdata
-% and the comment by CarLaTeX on Stack Exchange:
-% https://tex.stackexchange.com/questions/280631/
-% new-font-file-not-found-with-miktex-installation.
+% and the comment by CarLaTeX on 
+% Stack Exchange.\footnote{https://tex.stackexchange.com/questions/280631/new-font-file-not-found-with-miktex-installation.}
 % Open the command prompt with administrator privileges.
-% Then type the following commands in order:
+% Then enter the following commands in order:
 %
 % |updmap --admin|
 %
@@ -413,6 +441,7 @@ LaTeX version 2005/12/01 or later.
 %
 % |initexmf --mkmaps|
 %
+% \item
 % The |\makeabstract| macro automatically provides a word-count
 % of the abstract text. If the text of the abstract is not right against
 % the surrounding brackets, extra words will be added to the
@@ -426,9 +455,11 @@ LaTeX version 2005/12/01 or later.
 % 
 % |}|
 %
+% \item
 % Plots added to the document using the |\includeplot| command may be slightly larger than
 % the specified width due to the overlaid text extending outside the |.eps| figure's bounding box.
 % In most cases, using the optional argument |[width=0.99\textwidth]| fixes bad-box errors.
+% \end{enumerate}
 %
 %
 % \StopEventually{\PrintChanges}
