@@ -56,159 +56,16 @@ The word count of the abstract is provided automatically, but requires specific 
 \listoffigures
 
 
+%% Begin Main Document
+\mainmatter % Reset page numbers with Arabic numerals
+
+% Use subfiles for a document that is easier to manage
+\subfile{\main/chapters/chapter1}
+\subfile{\main/chapters/chapter2}
 
 
-
-\mainmatter % Switch to Arabic numbering
-
-\chapter{Introduction}
-\lipsum[1]
-%\section{Suspendisse vitae elit. Aliquam arcu neque, ornare in, ullamcorper quis, commodo eu, libero.} % \lipsum[10][1-2]
-\section{\lipsum[150][1-3]}
-\lipsum[3]%
-\footnote{This is simply the ubiquitous ``Lorem Ipsum'' placeholder text for typesetting. This is a long footnote, and extends to more than just a single line.}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=.7\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram1}
-\end{figure}
-  
-\begin{figure}[h]
-  \centering
-  \includeplot[width=.8\textwidth]{figures/plots/placeholder}
-  \caption{The caption of the figure which is much longer than the other captions, since it should flow to the next line every time}
-  \label{fig:BlockDiagram2}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includediagram{figures/diagrams/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram3}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-
-
-%This paragraph references Figure \ref{fig:BlockDiagram1}, and should be clickable.
-
-\lipsum[4]%
-\footnote{Another paragraph from the same source.}\footnote{And something else I remembered that merits its own footnote.}
-
-\subsection{Subsection Title}
-\lipsum[5]
-
-\subsubsection{Sub-subsection}
-\lipsum[6-7]
-\subsubsection{Another Sub-subsection}
-\lipsum[8-9]\footnote{This footnote is on a new page and is numbered starting from the beginning}
-
-\section{\lipsum[150][4]}
-
-\subsection{\lipsum[150][8]}
-\lipsum[10]
-
-\unpacklipsum[150][5]
-\chapter{\lipsumexp}
-
-\section{\lipsum[150][6]}
-\lipsum[5-6]
-
-\section{\lipsum[150][7]}
-\lipsum[7]
-
-\chapter{One}
-
-This page contains a sample table.
-
-\begin{thesistable}[htbp]
-{c c c}
-[A Simple Table]
-{A Simple Table. Note that this table has some extra information added to the caption at this point in the text, but this extra text will not appear in the List of Tables.}
-{tab:sampletable}
-{First & Second & Third}
-Data 1 & Data 2 & Data 3 \\
-Data 4 & Data 5 & Data 6 \\
-\end{thesistable}
-
-\chapter{Another}
-\chapter{Another}
-\chapter{Another}
-\chapter{Another}
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-\chapter{Another}
-\chapter{Another}
-\chapter{Another}
-\chapter{Another}
-\chapter{Another}
-\chapter{Another}
-\chapter{Another}
-\chapter{Another}
-
-
-
-\backmatter
+%% Begin Back Matter
+\backmatter % Change chapter title to ``Appendix''
 
 \bibliographystyle{ieeetr}
 \bibliography{\main/references/references}
@@ -216,27 +73,9 @@ Data 4 & Data 5 & Data 6 \\
 
 \begin{appendices}
 
-\unpacklipsum[141][1-3]
-\chapter{\lipsumexp}
-\lipsum[140][4]
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/pictures/placeholder}
-  \caption{The caption of the figure}
-  \label{fig:BlockDiagram4}
-\end{figure}
-
-\section{\lipsum[140][3]}
-\lipsum[8-9]
-
-\section{\lipsum[140][5]}
-\lipsum[10]
-
-\unpacklipsum[140][6]
-\chapter{\lipsumexp}
-\lipsum[11] \cite{einstein, latexcompanion, knuthwebsite}
-
+% Use subfiles for a document that is easier to manage
+\subfile{\main/chapters/appendix1}
+\subfile{\main/chapters/appendix2}
 
 \end{appendices}
 
