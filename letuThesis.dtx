@@ -466,6 +466,15 @@ LaTeX version 2005/12/01 or later.
 % Plots added to the document using the |\includeplot| command may be slightly larger than
 % the specified width due to the overlaid text extending outside the |.eps| figure's bounding box.
 % In most cases, using the optional argument |[width=0.99\textwidth]| fixes bad-box errors.
+%
+% \item
+% If a |thesistable| environment typeset as a |longtable| has a moderately long caption,
+% justification of the table caption on subsequent pages after the first may fail to recognize
+% the end of the line. This is due to the ``-- Continued from previous page'' text being
+% included in the caption and moving to the next line. \LaTeX{} then thinks the line should
+% be spread out across the entire text width as it is technically the penultimate line, while
+% to the reader, the last line of the caption should be ragged-right.
+%
 % \end{enumerate}
 %
 %
