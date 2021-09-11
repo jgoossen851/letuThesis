@@ -248,13 +248,13 @@ LaTeX version 2005/12/01 or later.
 % \subsection{Sectioning Commands}
 %
 % Several commands are provided to split the thesis document into several sections
-% that have different formating, similar to the commands found in the |book|
+% that have different formatting, similar to the commands found in the |book|
 % documentclass.
 % 
 % \DescribeMacro{\frontmatter}
 % The |\frontmatter| macro should be called after the document has begun, but before
 % any text is typeset. The macro ensures that a new page will be started and restarts
-% page numbering with roman numerals on the following page.
+% page numbering with Roman numerals on the following page.
 %
 % \DescribeMacro{\mainmatter}
 % The |\mainmatter| macro separates the preliminary pages from the main content
@@ -265,7 +265,7 @@ LaTeX version 2005/12/01 or later.
 % \DescribeMacro{\backmatter}
 % The |\backmatter| macro changes the format of chapter titles to be regular text
 % so that unnumbered chapters after the appendices are formatted consistently with
-% chapters before the first.
+% chapters before the first. For appendices, use the |appendices| environment.
 %
 %
 % \subsection{Preliminary Pages}
@@ -345,7 +345,7 @@ LaTeX version 2005/12/01 or later.
 % table. The third argument is optional. If provided, the \meta{lofCaption} caption will
 % be used to reference the table in the List of Tables instead of the \meta{caption}
 % that is located under the table in the body of the text. This optional argument is useful
-% when the caption is too long to fit in the List of Tables and should be abbreviated.
+% when the caption contains extra information that should not be included in the List of Tables.
 % This option is also useful if the caption needs special formatting to be typeset correctly
 % in either location.
 % \item \marg{caption} The fourth argument will be used as the caption for the table.
@@ -420,7 +420,7 @@ LaTeX version 2005/12/01 or later.
 % \begin{enumerate}
 % \item
 % If section numbers are left turned on in the body of the document and a section
-% label take almost the whole line or more than a line, the section number can
+% label takes almost the whole line or more than a line, the section number can
 % be pushed outside of the page margins. The section number is typeset as if it had
 % no width in order to preserve the centered look of the text itself. Line breaks should
 % manually be added to the title.
@@ -434,7 +434,7 @@ LaTeX version 2005/12/01 or later.
 % 
 % This problem was fixed by following the steps as laid out by ltcomdata
 % and the comment by CarLaTeX on 
-% Stack Exchange.\footnote{https://tex.stackexchange.com/questions/280631/new-font-file-not-found-with-miktex-installation.}
+% Stack Exchange.\footnote{\url{https://tex.stackexchange.com/questions/280631}}
 % Open the command prompt with administrator privileges.
 % Then enter the following commands in order:
 %
@@ -1129,7 +1129,7 @@ LaTeX version 2005/12/01 or later.
 % However, for the mainmatter (content in the main content sections with 
 % Arabic numeral numbering), the 
 % chapter label should be normal but the chapter title should be emboldened.
-% This macro is initialized to bold the text as for the mainmatter,
+% This macro is initialized to embolden the text as for the mainmatter,
 % causing individual chapters to be typeset correctly without needing to call
 % the |\mainmatter| command (doing so could cause problems with page
 % numbering). The |\@chapterFontStyle| is redefined to make the
@@ -1149,7 +1149,7 @@ LaTeX version 2005/12/01 or later.
 % The optional argument, \meta{shape} = display, puts the section
 % label in a separate paragraph from the section title.
 % The \meta{format} argument makes the 
-% font normal sized, centers the title, and ensures that a multi-line
+% font normal sized, centers the title, ensures that a multi-line
 % chapter title will be single-spaced, and adds extra vertical space.
 % The |\capital@letterheight| macro saves the height of a capital
 % letter, which is used in an expression to place the title at the very
@@ -1186,7 +1186,7 @@ LaTeX version 2005/12/01 or later.
 %
 % \subsubsection{Sections}
 % Formatting for the section title is achieved similarly.
-% The optional argument, \meta{shape}~=~block, puts the section label
+% The optional argument, \meta{shape}~=~|block|, puts the section label
 % and title in a block (paragraph) without additional formatting.
 % The \meta{format} label contains the beginning of an environment---defined 
 % in the |changepage| package---to shrink
@@ -1211,8 +1211,8 @@ LaTeX version 2005/12/01 or later.
 %
 % \subsubsection{Subsections}
 % The subsection formatting is very similar to the section format, except
-% that it is italicized an the \meta{shape} argument is specified as
-% hang, which typesets a hanging label.
+% that it is italicized and the \meta{shape} argument is specified as
+% |hang|, which typesets a hanging label.
 % A ragged-right argument is also supplied to let full title lines 
 % move onto the next line
 % without hyphenating or spilling into the margin.
@@ -1302,13 +1302,13 @@ LaTeX version 2005/12/01 or later.
 \setcounter{tocdepth}{4}
 %    \end{macrocode}
 %
-% Redefine the style for the table of contents. First clear the page to
-% ensure that the page number for the table of contents is correct,
-% then rename the table of contents and add a reference to it
+% Redefine the style for the \toc. First clear the page to
+% ensure that the page number for the \toc is correct,
+% then rename the \toc and add the \toc's own reference
 % to the \toc file.
 % Then, turn off hyphenation while typesetting the \toc.
 % Finally, do the rest of the commands
-% for typesetting the table of contents.
+% for typesetting the old \toc.
 %    \begin{macrocode}
 \let\oldtableofcontents\tableofcontents
 \def\tableofcontents{%
@@ -1366,7 +1366,7 @@ LaTeX version 2005/12/01 or later.
 % |\patchcmd|, which searches for a string inside a
 % macro expansion and replaces it with a user-defined string.
 % This allows for the command to be modified
-% to include all caps letters.
+% to include all-caps letters.
 % The command contains the text argument in two places;
 % therefore, two replacements need to be made.
 %    \begin{macrocode}
@@ -1623,7 +1623,7 @@ LaTeX version 2005/12/01 or later.
 % the table appears. These headers should contain the table number with a note that
 % the table is being continued from a previous page. This text is placed within another
 % |\caption| command with an empty optional argument to ensure that this second caption
-% is not listed in the List of Tables. The table number is references itself via the |\nameref|
+% is not listed in the List of Tables. The table number references itself via the |\nameref|
 % macro and the fifth argument, \meta{label}.
 %    \begin{macrocode}
     \caption[]{\nameref{#5} 
@@ -1665,7 +1665,7 @@ LaTeX version 2005/12/01 or later.
 }
 %    \end{macrocode}
 % The second argument of the |thesistable| environment declares how to end the environment.
-% An if statement, similar to the first part, is used to either wrap up the |longtable| or the
+% An if-statement, similar to the first part, is used to either wrap up the |longtable| or the
 % |tabular| and |table| depending on which one was created.
 %    \begin{macrocode}
 {
@@ -1682,21 +1682,27 @@ LaTeX version 2005/12/01 or later.
 %
 % \subsection{Graphics Commands}
 %
+% \begin{macro}{\includegraphics}
 % Use the |\includegraphics| command from the |graphicx| package.
 %    \begin{macrocode}
 \RequirePackage{graphicx}
 %    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\includediagram}
 % For Ti\emph{k}Z diagrams, use the |standalone| package and create a wrapper macro.
 %    \begin{macrocode}
 \RequirePackage{standalone}
 \newcommand{\includediagram}[1]{\includestandalone[mode=buildnew]{#1}}
 %    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\includeplot}
 % For MATLAB plots exported using LaPrint, use the |pstool| package and create
 % a wrapper macro.
 %    \begin{macrocode}
 \RequirePackage[crop=pdfcrop]{pstool}
 \newcommand{\includeplot}[2][]{\psfragfig[#1]{#2}{}}
 %    \end{macrocode}
+% \end{macro}
 % 
 %
 % \subsection{Other Spacing}
@@ -1773,7 +1779,8 @@ LaTeX version 2005/12/01 or later.
 % may need to be further tuned for exact placement of the rule.
 %    \begin{macrocode}
 \newlength{\@footnoteheadspaceadjust}
-\setlength{\@footnoteheadspaceadjust}{\dimexpr \footnotesep - \@defaultfootsep - \@footnoteheadspace}
+\setlength{\@footnoteheadspaceadjust}%
+{\dimexpr \footnotesep - \@defaultfootsep - \@footnoteheadspace}
 %    \end{macrocode}
 % \end{macro}
 %
