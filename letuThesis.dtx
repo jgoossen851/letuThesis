@@ -297,8 +297,11 @@ LaTeX version 2005/12/01 or later.
 % \DescribeMacro{\makeabstract}
 % The |\makeabstract| macro typesets the abstract page, making use of the macros
 % set by the |\author|, |\discipline|, |\committee|, and |\lastChapter|
-% macros described above. The macro accepts one argument containing
-% the text of the abstract. If the thesis director is not automatically typeset as desired,
+% macros described above. The macro accepts one optional argument
+% containing the abstract word count, and one mandatory argument
+% containing the text of the abstract.
+% The word count will be automatically supplied if not explicitly provided.
+% If the thesis director is not automatically typeset as desired,
 % the automatically generated text can be overwritten for this page only
 % using the |\director| macro.
 %
@@ -450,9 +453,13 @@ LaTeX version 2005/12/01 or later.
 % as shown in the example below:
 %
 % |\makeabstract{%|
-% 
+%
 % |The body text of the abstract.%|
-% 
+%
+% ||
+%
+% |Second paragraph.%|
+%
 % |}|
 %
 % \item
