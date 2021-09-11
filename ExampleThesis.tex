@@ -1,8 +1,10 @@
 \documentclass[12pt, oneside]{report}
 
-%Debugging packages and commands:
+%% Useful debugging packages and commands:
+% Show a black frame around your margins:
 %\usepackage{showframe}
-\overfullrule=10pt
+% Show a thick black box when your text spills outside of a margin (badbox error)
+%\overfullrule=10pt
 
 % Modular Compilation
 \usepackage{subfiles}
@@ -10,8 +12,6 @@
 
 % LETU Thesis Formatting
 \usepackage{\main/letuThesis}
-\usepackage[crop=pdfcrop]{pstool}
-\usepackage{standalone} % for inputting tikz pictures
 
 % External Packages
 \usepackage{lipsum}
@@ -33,7 +33,8 @@
 \usepackage[hidelinks]{hyperref}
 \begin{document}
 
-\frontmatter
+%% Begin Preliminary Pages
+\frontmatter % Roman numerals
 
 \maketitle
 \makesignatures
@@ -45,16 +46,9 @@
 \makeacknowledgments{\lipsum[4-5]\par
 I'd like to acknowledge everyone who made this possible. Thanks!\par}
 
+
 \tableofcontents
-
-%\clearpage
-%\addcontentsline{toc}{chapter}{List of Tables}
-%\chapter*{List of Tables}
 \listoftables
-
-%\clearpage
-%\addcontentsline{toc}{chapter}{List of Figures}
-%%\addtocontents{lof}{~\hfill Page\par}
 \listoffigures
 
 
@@ -241,10 +235,5 @@ Data 4 & Data 5 & Data 6 \\
 
 
 \end{appendices}
-
-
-
-
-
 
 \end{document}
