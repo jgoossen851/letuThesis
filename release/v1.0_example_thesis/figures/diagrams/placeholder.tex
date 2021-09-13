@@ -1,0 +1,18 @@
+% Define main, allowing the standalone to automatically be recompiled from any directory
+\IfFileExists{./ExampleThesis.tex}{\providecommand{\main}{.}}{
+	\IfFileExists{../ExampleThesis.tex}{\providecommand{\main}{..}}{
+		\IfFileExists{../../ExampleThesis.tex}{\providecommand{\main}{../..}}{
+			\providecommand{\main}{../../..}}}}
+
+\documentclass[border=0.7mm, tikz]{standalone}
+%\documentclass[border=6mm]{standalone} % Larger border for context
+
+\input{\main/figures/diagrams/tikzStyle}
+
+\begin{document}
+\begin{tikzpicture}
+
+\node at (0,0) [draw, minimum height=5cm, minimum width=10cm] {\color{black!40}Placeholder (Diagram)};
+
+\end{tikzpicture}
+\end{document}

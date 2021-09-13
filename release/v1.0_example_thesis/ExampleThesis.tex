@@ -1,0 +1,82 @@
+\documentclass[12pt, oneside]{report}
+
+%% Useful debugging packages and commands:
+% Show a black frame around your margins:
+%\usepackage{showframe}
+% Show a thick black box when your text spills outside of a margin (badbox error)
+%\overfullrule=10pt
+
+% Modular Compilation
+\usepackage{subfiles}
+\providecommand{\main}{.}
+
+% LETU Thesis Formatting
+\usepackage{\main/letuThesis}
+
+% External Packages
+\usepackage{lipsum}
+
+% Preamble Information
+\title{An Interesting Title \\ of a Not-So-Interesting Thesis}
+\author{Joseph Daniel Alsop}
+\committee{
+	Dr. Fiona McLean, PhD \\
+	Dr. Charles Mathis, PhD \\
+	Dr. Virginia Metcalfe, PhD, PE \\
+	Dr. Justin Nolan, PhD}
+\university{LeTourneau University}
+\school{School of Engineering and Engineering Technology}
+\discipline{Electrical Engineering}
+\titlepageauthor{J. D. Alsop}
+\lastChapter{Chapter 2: Samples for Tables}
+
+\usepackage[hidelinks]{hyperref}
+\begin{document}
+
+%% Begin Preliminary Pages
+\frontmatter % Roman numerals
+
+\maketitle
+\makesignatures
+\makecopyright
+
+\makeabstract{%
+This sample thesis contains content from the ``Lorem Ipsum'' placeholder text.
+The text itself is not designed to have any meaning, but rather provide a sample of the desired formatting.%
+
+The word count of the abstract is provided automatically, but requires specific formatting to compute correctly. The automatic word count can easily be overwritten by an optional parameter to the command that typesets the abstract. Make sure you double check that the word count is correct.%
+}
+
+\makeacknowledgments{
+\lipsum[1-2] % First two paragraphs of Lorem Ipsum placeholder text
+}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+
+%% Begin Main Document
+\mainmatter % Reset page numbers with Arabic numerals
+
+% Use subfiles for a document that is easier to manage
+\subfile{\main/chapters/chapter1}
+\subfile{\main/chapters/chapter2}
+
+
+%% Begin Back Matter
+\backmatter % Change chapter title to ``Appendix''
+
+\bibliographystyle{ieeetr}
+\bibliography{\main/references/references}
+
+
+\begin{appendices}
+
+% Use subfiles for a document that is easier to manage
+\subfile{\main/chapters/appendix1}
+\subfile{\main/chapters/appendix2}
+
+\end{appendices}
+
+\end{document}

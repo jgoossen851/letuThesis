@@ -1,0 +1,295 @@
+\usepackage{tikz}
+\usepackage{nccmath} % Extends asmmath
+% Use Times New Roman-like font, from letuThesis.dtx
+\usepackage[largesc]{newtxtext}
+\usepackage[varg]{newtxmath}
+
+\usetikzlibrary{shapes, shadows, arrows, matrix, chains, scopes, calc, shadows.blur}
+\usetikzlibrary{fit, patterns, decorations.markings} % multithreading diagrams
+\usetikzlibrary{decorations.pathreplacing} % LMS Double Buffer
+\usetikzlibrary{shapes.misc} % for cross in Upsampling Scheme Graphic
+
+% Shortcuts and user defined commands
+% =======================
+
+% \arrow: Draw an arrow from #1 to #3, connecting with symbol in #2
+\newcommand\arrow[3]{\draw[->] (#1) #2 (#3);}
+
+% \multiline: Format the #1 text in a box to break lines in fixed-size node
+\newcommand\multiline[1]{\parbox{\textwidth}{\centering#1}}
+
+% \delayby: Formatting for z-transform text
+\newcommand\delayby[1]{$z^{-#1}$}
+
+
+% Structure Commands to make new nodes or text as certain positions
+% ==========================================
+
+% \maketwoinputs: Create two notes on the left of #1 (named with suffix `-in1' and `-in2') equally spaced from center
+\newcommand\maketwoinputs[1]{
+    \path (#1.west) -- (#1.north west) coordinate[pos=0.5] (#1-in1);
+    \path (#1.west) -- (#1.south west) coordinate[pos=0.5] (#1-in2);
+}
+
+% \maketwooutputs: Create two nodes on the right of #1 (named with suffix `-out1' and `-out2') equally spaced from center
+\newcommand\maketwooutputs[1]{
+    \path (#1.east) -- (#1.north east) coordinate[pos=0.5] (#1-out1);
+    \path (#1.east) -- (#1.south east) coordinate[pos=0.5] (#1-out2);
+}
+
+% \outlabel: Create a label #3 above the output of a node #2 with optional shift #1
+\newcommand\outlabel[3][(0,0)]{\node at ($ (#2.east) + #1 $) [anchor=south west] {#3};}
+
+% \inlabel: Create a label #3 above the input of a node #2 with optional shift #1
+\newcommand\inlabel[3][(0,0)]{\node at ($ (#2.west) + #1 $) [anchor=south east] {#3};}
+
+% \abovelabel: Create a label #3 above the node #2 with optional shift #1
+\newcommand\abovelabel[3][(0,0)]{\node at ($ (#2.north) + #1 $) [anchor=south] {#3};}
+
+% \wrappernode: Draw large node #2, at (#3), with width #4 and height #5 [extra styles #1] and label #6
+\newcommand\wrappernode[7][]{
+    \node (#2) [block, #1, minimum width=#4, minimum height=#5] at (#3) {};
+    \node at ($(#2.north west)+(3mm,0)$) [anchor=north west, blockfont, minimum width=12mm,
+         blockheight, text width=#7] {\hspace{2mm}{\parbox{\textwidth}{#6}}};
+}
+
+% \mux: create #1 output nodes (suffix `-out[1:#1]') on base node #2 at coordinate #3
+\newlength{\muxscale}\setlength{\muxscale}{0.75cm}
+\newcommand\mux[3]{
+    \node (#2) at (#3) [rectangle, minimum width=.28\muxscale, 
+        minimum height=#1\muxscale, anchor=center] {}; % base node
+    \foreach \y in {1,...,#1}{
+        \node (#2-out\y) at ($(#2.north) + (0,0.5\muxscale) - (0,\y\muxscale)$)
+          	 [rectangle, minimum width=0.28\muxscale, 
+          	 minimum height=1\muxscale, anchor=center] {}; % output node
+    }
+    \filldraw [fill=black!50, scale=0.5, draw=black] (#2.west)
+        -- ++($(0,#1\muxscale)+(0,-0.4\muxscale)$) -- ++(0.6\muxscale,0.4\muxscale)
+        -- ++($(0,-#1\muxscale)+(0,-#1\muxscale)$) -- ++(-0.6\muxscale,0.4\muxscale)
+        -- cycle; % displayed shape
+}
+
+% \demux: create #1 output nodes (suffix `-out[1:#1]') on base node #2 at coordinate #3 with width #4, output height #5
+\newcommand\demux[5]{
+    \newlength{\muxwidth}\setlength{\muxwidth}{#4}
+    \newlength{\muxheight}\setlength{\muxheight}{#5}
+    \node (#2) at (#3) [rectangle, minimum width=\muxwidth, 
+        minimum height=#1\muxheight, anchor=center] {}; % base node
+    \foreach \y in {1,...,#1}{
+        \node (#2-out\y) at ($(#2.north) + (0,0.5\muxheight) - (0,\y\muxheight)$)
+          	 [rectangle, minimum width=\muxwidth, 
+          	 minimum height=1\muxheight, anchor=center] {}; % output node
+    }
+    \filldraw [fill=black!50, scale=0.5, draw=black] (#2.west)
+        -- ++($(0,#1\muxheight)+(0,-0.4\muxheight)$) -- ++(2.5\muxwidth,0.4\muxheight)
+        -- ++($(0,-#1\muxheight)+(0,-#1\muxheight)$) -- ++(-2.5\muxwidth,0.4\muxheight)
+        -- cycle; % displayed shape
+}
+
+% Multithreading diagram colors
+\colorlet{mainthreadcolor}{gray!70!white}
+\colorlet{nullcolor}{red!20!white}
+\colorlet{commandcolor}{gray}
+\colorlet{computecolor}{blue!20!white!80!green}
+
+% Fading for the multithreading diagrams (89% of full width)
+\begin{tikzfadingfrompicture}[name=myfadewest]
+  \clip (0,0) rectangle (2,2); % 2cm x 2cm fade mask
+  \shade [left color=transparent!100, right color=transparent!100]
+  (0,0) rectangle (0.22,2);
+  \shade [left color=transparent!100, right color=transparent!0]
+  (0.22,0) rectangle (2,2);
+\end{tikzfadingfrompicture}
+\begin{tikzfadingfrompicture}[name=myfadeeast]
+  \clip (0,0) rectangle (2,2); % 2cm x 2cm fade mask
+  \shade [left color=transparent!0, right color=transparent!100]
+  (0,0) rectangle (1.78,2);
+  \shade [left color=transparent!100, right color=transparent!100]
+  (1.78,0) rectangle (2,2);
+\end{tikzfadingfrompicture}
+\begin{tikzfadingfrompicture}[name=myappendfadewest]
+  \clip (0,0) rectangle (2,2); % 2cm x 2cm fade mask
+  \shade [left color=transparent!100, right color=transparent!100]
+  (0,0) rectangle (0.22,2);
+  \shade [left color=transparent!100, right color=transparent!0]
+  (0.22,0) rectangle (1.65,2);
+  \shade [left color=transparent!0, right color=transparent!0]
+  (1.65,0) rectangle (1.78,2);
+  \shade [left color=transparent!100, right color=transparent!100]
+  (1.78,0) rectangle (2,2);
+\end{tikzfadingfrompicture}
+\begin{tikzfadingfrompicture}[name=myappendfadeeast]
+  \clip (0,0) rectangle (2,2); % 2cm x 2cm fade mask
+  \shade [left color=transparent!100, right color=transparent!100]
+  (0,0) rectangle (0.22,2);
+  \shade [left color=transparent!0, right color=transparent!0]
+  (0.22,0) rectangle (0.35,2);
+  \shade [left color=transparent!0, right color=transparent!100]
+  (0.35,0) rectangle (1.78,2);
+  \shade [left color=transparent!100, right color=transparent!100]
+  (1.78,0) rectangle (2,2);
+\end{tikzfadingfrompicture}
+
+% Parameters for the line-break symbol in the multithreading diagram
+\def\MarkLt{4pt}
+\def\MarkSep{4pt}
+
+%%%%%%%%%%%%%
+% Tikz environment setup %
+%%%%%%%%%%%%%
+
+% Options for the node styles, labels, lines, etc.
+% ===========================
+\tikzset{
+    node distance=5mm, auto,
+    >=latex, % Set arrow tip to LaTeX style
+    % Globally increase line width
+    every picture/.style = {
+        line width=1 pt
+    },
+    % Global color style
+    blockcolors/.style = {
+        thick, draw=black,
+        fill=gray!30!white,
+        blockfont,
+        drop shadow={color=gray!50!black},
+    },
+    % Global Block-Diagram Font
+    blockfont/.style = {
+       font=\small
+    },
+    % Generic Block Height
+    blockheight/.style = {
+        minimum height=10mm
+    },
+    % Basic Rectangular Block
+    block/.style={
+        rectangle, minimum size=6mm, minimum width=12mm,
+        blockheight,
+        node distance=5mm,
+        blockcolors,
+    },
+    % Circle Node
+    open circle/.style={
+        circle, inner sep=0pt,
+        thick, draw=black,
+        fill = white,
+    },
+    % Digital Delay (z-transform)
+    delay/.style={
+        block, % copy the syle of block, but with modifications below
+        rectangle, minimum size=4mm, minimum width=6mm,
+        minimum height=6mm,
+    },
+    % System Input
+    input/.style={
+        open circle, minimum size=2mm, node distance=8mm, fill=gray!40!white
+    },
+    % System Output
+    output/.style={
+        input
+    },
+    % Regular Triangular Gain
+    gain/.style={
+       draw,
+       shape border rotate=-90,
+       inner sep=0.5mm,
+       regular polygon,
+       regular polygon sides=3,
+       blockcolors,
+       minimum size=1cm
+    },
+    % Isosceles Triangular Gain
+    iso gain/.style={
+       draw,
+       isosceles triangle,
+       inner sep=0.5mm,
+       blockcolors,
+       minimum size=1cm
+    },
+    % Summation Operator
+    sum/.style={
+        open circle, minimum size=7mm, node distance=8mm,
+        blockcolors,
+    },
+    % Summation Operator (alternate)
+    sum2/.style={
+        open circle, minimum size=4mm, node distance=8mm,
+        blockcolors, label={center:\large$+$},  %, label={\large$+$}
+    },
+    % Triangular Multiplication Operator
+    mult/.style={
+        gain,
+        inner sep=-.65mm,
+        font={\Large$\times$}
+    },
+    % Circular Multiplication Operator
+    circle mult/.style={
+        sum,
+        font={\Large$\times$}
+    },
+    % Junction Marker on diverging lines
+    junction/.style={
+        open circle, minimum size=0.5mm,fill=black, node distance=5mm
+    },
+    % Node Location with no symbol
+    phantom/.style={
+    },
+    %% Multithreading Diagram style
+    null-line/.style = {
+		rectangle, 
+		draw=gray!60!black, thin,
+		preaction={fill, nullcolor}, 
+		pattern=north east lines,
+		pattern color=red!70
+	},
+	calculation/.style = {
+		rectangle,
+		fill=computecolor,
+		draw=black,
+		anchor = west,
+	},
+	command/.style = {
+		calculation,
+		fill=commandcolor,
+		inner sep=-0.5\pgflinewidth, outer sep=0,
+	},
+	cmddot/.style = {
+		open circle,
+		fill = black,
+		minimum size = 1mm,
+	},
+	fadeout/.style = {
+		command,
+		path fading=myfadeeast,
+		left color=commandcolor,
+		right color=white,
+	},
+	fadein/.style = {
+		command,
+		path fading=myfadewest,
+		left color=white,
+		right color=commandcolor,
+	},
+	TwoMarks/.style={
+		postaction={
+    		decorate, decoration={
+				markings, mark=at position #1 with
+				{
+					\begin{scope}[xslant=0.3]
+					\draw[line width=\MarkSep,white,-] (0pt,-\MarkLt) -- (0pt,\MarkLt) ;
+					\draw[-] (-0.5*\MarkSep,-\MarkLt) -- (-0.5*\MarkSep,\MarkLt) ;
+					\draw[-] (0.5*\MarkSep,-\MarkLt) -- (0.5*\MarkSep,\MarkLt) ;
+					\end{scope}
+				}
+			}
+		}
+	},
+	TwoMarks/.default={0.5},
+	cross/.style={
+		cross out, draw=black, minimum size=2*(#1-\pgflinewidth),
+		inner sep=0pt, outer sep=0pt
+	},
+	cross/.default={3pt}, %default radius will be 3pt. 
+}
+

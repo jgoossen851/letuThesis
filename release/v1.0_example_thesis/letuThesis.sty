@@ -1,0 +1,436 @@
+%%
+%% This is file `letuThesis.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% letuThesis.dtx  (with options: `package')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2021 by Jeremy Goossen
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+%% 
+\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+\ProvidesPackage{letuThesis}
+[2021/09/12 v1.0 Thesis Styling for LeTourneau University School of Engineering]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[margin=1in, left=1.5in, footskip=0.5in]{geometry}
+\RequirePackage{setspace}
+\RequirePackage{indentfirst}
+\topskip=0pt
+\RequirePackage[largesc]{newtxtext}
+\RequirePackage[varg]{newtxmath}
+\setlength{\parindent}{0.5in}
+\doublespacing
+\widowpenalty10000
+\clubpenalty10000
+\RequirePackage{xstring}
+\renewcommand{\title}[1]{%
+  \expandarg
+  \StrSubstitute{#1}{\empty\par}{\empty\break}[\@title]
+  \StrSubstitute{\@title}{\empty\newline}{\empty\break}[\@title]
+  \StrSubstitute{\@title}{\empty\\}{\empty\break}[\@title]
+  \global\StrSubstitute{\@title}{\space\break}{\empty\break}[\@title]
+}
+\renewcommand*\@title{How to Prepare\break the Perfect Thesis Document}
+\renewcommand*\@author{Firstname Lastname}
+\newcommand{\committee}[1]{\gdef\@committee{#1}}
+\providecommand*\@committee{%
+  Dr. William Graph, PhD \\ Dr. Jane Doe, PhD, PE \\ Dr. Doe Do, PhD
+}
+\newcommand{\university}[1]{\gdef\@university{#1}}
+\providecommand*\@university{LeTourneau University}
+\newcommand{\school}[1]{\gdef\@school{#1}}
+\providecommand*\@school{%
+  School of Engineering and Engineering Technology
+}
+\newcommand{\discipline}[1]{\gdef\@discipline{#1}}
+\providecommand*\@discipline{Underwater Basket Weaving}
+\newcommand{\lastChapter}[1]{\gdef\@lastChapter{#1}}
+\providecommand*\@lastChapter{\textbf{Last Chapter Not Specified}}
+\newcommand{\director}[1]{\gdef\@director{#1}}
+\newcommand{\titlepageauthor}[1]{\gdef\@titlepageauthor{#1}}
+\newcommand{\signaturepageauthor}[1]{\gdef\@signaturepageauthor{#1}}
+\newcommand\centersectionwithnumber{\gdef\sec@numformat{}}
+\providecommand*\sec@numformat[1]{\llap{#1}}
+\newcommand{\nosectionnumbers}{\gdef\@sectionnumbering{}}
+\providecommand*\@sectionnumbering{\sec@numformat{\thesection\quad}}
+\newcommand{\nosubsectionnumbers}{\gdef\@subsectionnumbering{}}
+\providecommand*\@subsectionnumbering{\thesubsection\quad}
+\newcommand{\setsubsubsecprestretch}[1]{%
+  \gdef\subsubsection@stretch{#1}}
+\providecommand*\subsubsection@stretch{0.5}
+\newlength{\contents@labelwidth}
+\setlength{\contents@labelwidth}{0.4in}
+\newcommand\setcontentslabelwidth[1]{%
+  \setlength{\contents@labelwidth}{#1}}
+\gdef\titlepage@text{%
+{\vspace{-0.4\baselineskip}\MakeUppercase{\@school}\par}%
+    \vskip 5pc%
+    {\MakeUppercase\@title\par}}
+\renewcommand{\maketitle}{%
+  \chapter*{\@university}
+  \begin{center}%
+    \titlepage@text%
+    \vskip 3pc \vfill
+    {\singlespacing by\par%
+    \begin{tabular}[t]{c}
+      \providecommand{\@titlepageauthor}{\@author}
+      \@titlepageauthor
+    \end{tabular}\par}
+    \vskip 3pc \vfill
+    {A thesis submitted in partial fulfillment of \break%
+    the requirements for the degree of Master of Science \break%
+    in the Discipline of \@discipline \par}
+    \vskip 3pc
+    {\@university\par}
+    \vskip 2pc
+    {\@getYear\@date \par}
+    \vskip 4pc
+  \end{center}\par
+  \vfill\null
+  \thispagestyle{empty}
+  \global\let\maketitle\relax
+  \global\let\@titlepageauthor\@empty
+}
+\newcommand{\makesignatures}{%
+  \chapter*{\@university}
+  \begin{center}%
+    \titlepage@text%
+    \vskip 1pc
+    {\singlespacing by\par%
+    \begin{tabular}[t]{c}
+      \providecommand{\@signaturepageauthor}{\@author}
+      \@signaturepageauthor
+    \end{tabular}\par}
+    \vskip 1pc
+    {\MakeUppercase{A thesis \break%
+    approved for the discipline of \break%
+    \@discipline} \par}
+    \vskip 48pt minus 12pt \vfill
+    {By Thesis Committee\par}
+    {\@typesetCommittee\par}
+  \end{center}\vskip -24pt \par\nopagebreak
+  \vfill\null
+  \global\let\makesignatures\relax
+  \global\let\@committee\@empty
+  \global\let\@university\@empty
+  \global\let\@school\@empty
+  \global\let\@signaturepageauthor\@empty
+  \global\let\committee\relax
+  \global\let\university\relax
+  \global\let\school\relax
+}
+\RequirePackage{textcomp}
+\newcommand{\makecopyright}{%
+  \chapter*{Copyright Statement}
+  \addcontentsline{toc}{chapter}{COPYRIGHT}
+  \vskip 0.5pc
+  {\centering Copyright \copyright{} \@getYear\@date\ by \@author\par}
+  \vskip 2.5pc
+  All rights reserved. No part of this publication may be reproduced,
+  stored in a retrieval system, or transmitted, in any form or by any
+  means (electronic, mechanical, photocopying, recording, or
+  otherwise) without the prior written permission of the author.\par
+  \vfill
+  \global\let\makecopyright\relax
+  \global\let\@getYear\@empty
+  \global\let\@date\@empty
+  \global\let\date\relax
+}
+\RequirePackage{lastpage}
+\newcommand{\makeabstract}[2][]{%
+  \chapter*{Abstract}
+  \addcontentsline{toc}{chapter}{ABSTRACT}
+  \def\count@given{#1}
+  \newcount\@abstractwordcount
+  \ifx\count@given\empty
+    \typeout{optional argument was omitted}
+    \fullexpandarg
+    \StrCount{#2}{\space}[\@countedSpaces]
+    \StrCount{#2}{\par}[\@countedPars]
+    \@abstractwordcount \@countedSpaces\relax
+    \advance\@abstractwordcount \@countedPars\relax
+    \advance\@abstractwordcount 1\relax
+  \else
+    \typeout{optional word count was given: `#1'}
+    \@abstractwordcount #1\relax
+  \fi
+  \providecommand*{\@director}{\textbf{Director not found!}}
+  \expandarg
+  \StrSubstitute{\@title}{\empty\break}{\space}[\@title]
+  \fullexpandarg
+  \tokenize{\@title}{\@title}
+  \noindent\@author\space (Master of Science in \@discipline)\par
+  \noindent\@title\par
+  \noindent Directed by \@director\par
+  \noindent\pageref{LastPage} pp., \@lastChapter\par
+  {\centering(\the\@abstractwordcount\space words)\par}
+  #2\par
+  \global\let\makeabstract\relax
+  \global\let\makecopyright\relax
+  \global\let\@getYear\@empty
+  \global\let\@title\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@discipline\@empty
+  \global\let\@lastChapter\@empty
+  \global\let\@director\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\discipline\relax
+  \global\let\lastChapter\relax
+  \global\let\director\relax
+}
+\newcommand{\makeacknowledgments}[1]{%
+  \chapter*{Acknowledgments}
+  \addcontentsline{toc}{chapter}{ACKNOWLEDGMENTS}
+  #1\par
+}
+\newcommand\@getYear[1]{\fullexpandarg\StrRight{#1}{4}}
+\newcommand{\@typesetCommittee}{%
+  \expandarg
+  \IfSubStr{\@committee}{\empty\\}{%
+    \StrCut{\@committee}{\empty\\}{\@member}{\@committee}
+    \@typesetMember\@member
+    \@typesetCommittee{\@committee}
+  }{%
+    \@typesetMember\@committee
+    \global\let\@committee\@empty
+  }
+}
+\newif\if@ischair
+\@ischairtrue
+\newcommand{\@chairDescriptor}{,~Chair}
+\newcommand{\@typesetMember}[1]{%
+  \expandarg
+  \IfBeginWith{#1}{\space}{\StrBehind{#1}{\space}[#1]}{}
+  \if@ischair
+    \StrBefore{#1}{,}[\@chair]
+    \@ifundefined{@director}{\global\edef\@director{\@chair}}{}
+  \else
+    \renewcommand{\@chairDescriptor}{}
+  \fi
+  \vspace{2pc}
+  \parbox{0.5\linewidth}{%
+    \rule{\linewidth}{0.4pt}\rlap{\@chairDescriptor}\par
+    \vspace{-10pt}\mbox{#1}
+  }\par
+  \@ischairfalse
+}
+\RequirePackage[nobottomtitles*]{titlesec}
+\newcommand{\@chapterFontStyle}{\bfseries}
+\newlength{\capital@letterheight}
+\titleformat{\chapter}[display]%
+  {\settoheight{\capital@letterheight}{H}
+  \normalfont\filcenter\singlespacing%
+  \vspace{\dimexpr -2\baselineskip + \capital@letterheight \relax}}%
+  {\MakeUppercase{\chaptertitlename} \thechapter}%
+  {\baselineskip}%
+  {\@chapterFontStyle\MakeUppercase}%
+\titlespacing{\chapter}{0pt}{1in}{0.6\baselineskip}
+\RequirePackage{changepage}
+\titleformat{\section}[block]{%
+    \begin{adjustwidth}{0.5in}{0.5in}
+    \normalfont\bfseries\filcenter\singlespacing
+  }{\@sectionnumbering}%
+  {0pt}{}
+  [\end{adjustwidth}]
+\titleformat{\subsection}[hang]%
+  {\normalfont\itshape\singlespacing\raggedright}
+  {\@subsectionnumbering}{0pt}{}
+\titleformat{\subsubsection}[runin]%
+  {\normalfont}{}{0pt}{}[:]
+\titlespacing{\subsubsection}{\parindent}%
+  {\subsubsection@stretch\baselineskip}{\wordsep}
+\RequirePackage{titletoc}
+\RequirePackage[nottoc, chapter]{tocbibind}
+\settocbibname{BIBLIOGRAPHY}
+\contentsmargin[0.5in]{2em}
+\newcommand{\@tocChapterName}{\chaptername}
+\newcommand{\leaderStyle}{\,\titlerule*[3pt]{.}}
+\addtocontents{toc}{~\vspace{-1.6\baselineskip}\par\hfill Page\par}
+\setcounter{tocdepth}{4}
+\let\oldtableofcontents\tableofcontents
+\def\tableofcontents{%
+  \clearpage
+  \renewcommand\contentsname{Table of Contents}
+  \addcontentsline{toc}{chapter}{TABLE OF CONTENTS}
+  \oldtableofcontents
+}
+\newlength{\normalparindent}
+\setlength{\normalparindent}{\parindent}
+\titlecontents{chapter}[0in]{%
+    \singlespacing\hangindent=1em\filright}%
+  {\contentspush{%
+      \MakeUppercase\@tocChapterName~%
+      \rlap{\thecontentslabel:}\hphantom{0:}}\quad%
+  }{}{\leaderStyle\contentspage}
+\RequirePackage{etoolbox}
+\patchcmd{\@chapter}
+  {{chapter}{\protect \numberline {\thechapter }#1}}
+  {{chapter}{\protect \numberline {\thechapter }
+      {\texorpdfstring{\MakeUppercase{#1}}{#1}}}}{}{}
+\patchcmd{\@chapter}
+  {{chapter}{#1}}
+  {{chapter}
+    {\texorpdfstring{\MakeUppercase{#1}}{#1}}}{}{}
+\titlecontents{section}[0.5in]%
+  {\vspace{-0.6\baselineskip}\singlespacing\filright}{}{}%
+  {\leaderStyle\contentspage}
+\titlecontents{subsection}[1in]%
+  {\vspace{-0.6\baselineskip}\singlespacing\itshape\filright}{}{}%
+  {\leaderStyle\textnormal{\contentspage}}
+\titlecontents{subsubsection}[1.5in]%
+  {\vspace{-0.6\baselineskip}\singlespacing\filright}{}{}%
+  {\leaderStyle\contentspage}
+\let\oldlistfigurename\listfigurename
+\renewcommand{\listfigurename}
+  {\texorpdfstring
+    {\MakeUppercase{\oldlistfigurename}}{\oldlistfigurename}}
+\let\oldlisttablename\listtablename
+\renewcommand{\listtablename}
+  {\texorpdfstring
+    {\MakeUppercase{\oldlisttablename}}{\oldlisttablename}}
+\addtocontents{lot}{~\vspace{-1.6\baselineskip}\par\hfill Page\par}
+\addtocontents{lof}{~\vspace{-1.6\baselineskip}\par\hfill Page\par}
+\titlecontents{table}[\contents@labelwidth]{%
+    \singlespacing\filright}%
+  {\contentslabel{\contents@labelwidth}}{}%
+  {\leaderStyle\contentspage}
+\titlecontents{figure}[\contents@labelwidth]{%
+    \singlespacing\filright}%
+  {\contentslabel{\contents@labelwidth}}{}%
+  {\leaderStyle\contentspage}
+\patchcmd{\@chapter}
+  {\addtocontents{lot}{\protect\addvspace{10\p@}}}
+  {{}}
+  {\typeout{Successfully patched @chapter}}
+  {\typeout{Failed to patch @chapter}}
+\patchcmd{\@chapter}
+  {\addtocontents{lof}{\protect\addvspace{10\p@}}}
+  {{}}
+  {\typeout{Successfully patched @chapter}}
+  {\typeout{Failed to patch @chapter}}
+\RequirePackage[title]{appendix}
+\let\oldappendices\appendices
+\def\appendices{\oldappendices\@appendixmatter}
+\newcommand{\frontmatter}{%
+  \clearpage\pagenumbering{roman}%
+  \renewcommand{\@chapterFontStyle}{\normalfont}%
+}
+\newcommand{\mainmatter}{%
+  \clearpage\pagenumbering{arabic}%
+  \renewcommand{\@chapterFontStyle}{\bfseries}%
+}
+\newcommand{\backmatter}{%
+  \renewcommand{\@chapterFontStyle}{\normalfont}%
+}
+\newcommand{\@appendixmatter}{%
+  \renewcommand{\@chapterFontStyle}{\bfseries}
+  \addtocontents{toc}%
+  {\protect\renewcommand*{\protect\@tocChapterName}%
+    {\protect\appendixname}}
+}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\setlength{\LTcapwidth}{\textwidth}
+\newcommand{\continuerule}{
+  \specialrule{\lightrulewidth}{\aboverulesep}{\belowbottomsep}
+}
+\newcommand{\settablespacingformat}{
+  \onehalfspacing
+  \renewcommand{\arraystretch}{1.2}
+}
+\RequirePackage{xargs}
+\newenvironmentx{thesistable}[6][1=\relax, 3=\relax]{
+  \def\given@placement{#1}
+  \def\default@placement{\relax}
+  \ifx\relax#3
+    \def\table@caption{\caption{#4}}
+  \else
+    \def\table@caption{\caption[#3]{#4}}
+  \fi
+  \ifx\given@placement\default@placement
+    \typeout{Typesetting environment thesistable as a longtable.}
+    \settablespacingformat
+    \begin{longtable}[c]{#2}
+    \table@caption\label{#5} \\
+    \toprule
+    #6 \\
+    \midrule \endfirsthead
+    \caption[]{\nameref{#5}
+        \hfill\mbox{ -- \textit{Continued from previous page}}}\\ [-1ex]
+    \toprule
+    #6 \\
+    \midrule \endhead
+    \continuerule
+    \multicolumn{\LT@cols}{r}{\textit{Continued on next page}} \\
+    \endfoot
+    \bottomrule \endlastfoot
+  \else
+    \typeout{Typesetting environment thesistable as a tabular.}
+    \begin{table}[#1]\centering
+    \settablespacingformat
+    \table@caption\label{#5}
+    \vspace{\baselineskip}
+    \begin{tabular}{#2}
+    \toprule
+    #6 \tabularnewline
+    \midrule
+  \fi
+}
+{
+  \ifx\given@placement\default@placement
+    \end{longtable}
+  \else
+    \bottomrule
+    \end{tabular}
+    \end{table}
+  \fi
+}
+\RequirePackage{graphicx}
+\RequirePackage{standalone}
+\newcommand{\includediagram}[1]{\includestandalone[mode=buildnew]{#1}}
+\RequirePackage[crop=pdfcrop]{pstool}
+\newcommand{\includeplot}[2][]{\psfragfig[#1]{#2}{}}
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{0pt plus 3pt}
+  \setlength\belowdisplayskip{0pt plus 3pt}
+  \setlength\abovedisplayshortskip{0pt plus 3pt}
+  \setlength\belowdisplayshortskip{0pt plus 3pt}
+}
+\setlength{\jot}{-1ex}
+\renewcommand*\arraystretch{.6}
+\RequirePackage[multiple,hang,perpage,symbol*,bottom,stable]{footmisc}
+\let\footnotesize\normalsize
+\setlength{\footnotemargin}{1em}
+\newlength{\@defaultfootsep}
+\setlength{\@defaultfootsep}{\footnotesep}
+\setlength{\footnotesep}{\baselineskip}
+\newlength{\@footnoteheadspace}
+\setlength{\@footnoteheadspace}{\skip\footins}
+\newlength{\@footnoteheadspaceadjust}
+\setlength{\@footnoteheadspaceadjust}%
+{\dimexpr \footnotesep - \@defaultfootsep - \@footnoteheadspace}
+\newlength{\@footnoteruleheight}
+\setlength{\@footnoteruleheight}{0.4pt}
+\renewcommand{\footnoterule}{%
+  \kern \@footnoteheadspaceadjust
+  \hrule width \textwidth height \@footnoteruleheight
+  \kern\dimexpr -\@footnoteheadspaceadjust-\@footnoteruleheight \relax
+}
+\endinput
+%%
+%% End of file `letuThesis.sty'.

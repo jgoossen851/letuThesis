@@ -1,0 +1,1838 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2021 by Jeremy Goossen
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any later
+% version. The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{letuThesis.dtx}
+%</driver>
+%
+%<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<package>\ProvidesPackage{letuThesis}
+%<*package>
+	[2021/09/12 v1.0 Thesis Styling for LeTourneau University School of Engineering]
+%</package>
+%
+%<*batchfile>
+\begingroup
+
+\input docstrip.tex
+\keepsilent
+
+\preamble
+
+This is a generated file.
+
+Copyright (C) 2021 by Jeremy Goossen
+
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.3 of this license or (at your option) any later 
+version. The latest version of this license is in:
+
+	http://www.latex-project.org/lppl.txt
+	
+and version 1.3 or later is part of all distributions of 
+LaTeX version 2005/12/01 or later.
+
+\endpreamble
+
+\askforoverwritefalse
+\generate{\file{letuThesis.sty}{\from{letuThesis.dtx}{package}}}
+
+
+
+\endgroup
+%</batchfile>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+%\OnlyDescription
+%% Packages/Setup for compiling the .dtx documentation
+\usepackage{xspace}
+\newcommand\toc{\textsc{toc}\xspace}
+\newcommand\lot{\textsc{lot}\xspace}
+\newcommand\lof{\textsc{lof}\xspace}
+\begin{document}
+	\DocInput{letuThesis.dtx}
+	\PrintChanges
+	\PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+% {Upper-case \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+% Lower-case \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+% Digits \0\1\2\3\4\5\6\7\8\9
+% Exclamation \!       Double quote \"     Hash (number) \#
+% Dollar \$            Percent \%          Ampersand \&
+% Acute accent \'      Left paren \(       Right paren \)
+% Asterisk \*          Plus \+             Comma \,
+% Minus \-             Point \.            Solidus \/
+% Colon \:             Semicolon \;        Less than \<%
+% Equals \=            Greater than \>     Question mark \?
+% Commercial at \@     Left bracket \[     Backslash \\
+% Right bracket \]     Circumflex \^       Underscore \_
+% Grave accent \`      Left brace \{       Vertical bar \|
+% Right brace \}       Tilde \~}
+%
+% \changes{v1.0}{2021/09/12}{Initial version}
+%
+% \GetFileInfo{letuThesis.dtx}
+%
+% \DoNotIndex{\newenvironment}
+% \DoNotIndex{\par,\gdef,\global,\let,\relax,\centering,\copyright,\fi,\quad}
+%
+% \overfullrule=40pt
+% \setcounter{IndexColumns}{2}
+%
+% \title{The \textsf{letuThesis} package\thanks{This document
+% corresponds to \textsf{letuThesis.dtx}~\fileversion, dated~\filedate.}}
+% \author{Jeremy Goossen \\ \texttt{jeremyg995@gmail.com}}
+%
+% \maketitle
+%
+% \section{Introduction}
+% This class formats a \LaTeX{} document according to LeTourneau University's
+% guidelines for Master's Thesis papers.
+% This package correlates to version 1.4 of the University's guidelines,
+% published September 2019.
+%
+%
+% \section{Usage}
+%
+% \subsection{Preamble Statements}
+%
+% \subsubsection{Recommended Fields}
+%
+% To set the fields needed for the preliminary pages, the following macros are
+% called in the preamble (before |\begin{document}|) with a single argument
+% describing their desired value.
+% 
+% \DescribeMacro{\title}
+% This macro sets the title of the thesis. If line-breaks are desired in the title on
+% the title page, they can be entered using the macros, |\\|, |\break|, |\par|,
+% or |\newline|. The title appears on the title page, on the signature page, and
+% with all line-breaks removed on the abstract.
+% Default: {\itshape How to Prepare \textbackslash \textbackslash\ 
+% the Perfect Thesis Document}.
+%
+% Note: All line-breaks are converted to |\break| with string replacement following
+% a single expansion. Therefore, if a |\\|, |\break|, or |\newline| is saved as a new
+% command used in the title, the syntax will break. Saving a |\par| as a new command
+% and entering it into the title will create a new line on the title page, signature page,
+% and the abstract.
+%
+% \DescribeMacro{\author}
+% This macro sets the author name for the title page, signature page,
+% copyright page, and abstract.
+% If necessary, the names on the title page and signature
+% page can be given a different format by defining alternate text using the
+% |\titlepageauthor| and |\signaturepageauthor| macros described below.
+% Default: {\itshape Firstname Lastname}
+%
+% \DescribeMacro{\committee}
+% This macro lists out the committee members on the signature page, separated
+% by the |\\| symbol, the standard symbol for splitting rows of tables.
+% The first member listed will be given
+% the label chair, and that member's name (without suffixes) will be used as the default
+% value of the Director (see below).
+% Default: {\itshape Dr. William Graph, PhD |\\| Dr. Jane Doe, PhD, PE |\\| Dr. Doe Do, PhD}
+% 
+% \DescribeMacro{\date}
+% This macro sets the date of the paper. Only the year is printed on the title page
+% and the copyright page. Since the year is extracted as the last four characters
+% of the expansion of the date, the format of the date must keep the year at the end.
+% Default: {\itshape |\today|}
+%
+% \DescribeMacro{\university}
+% This macro sets the university for the title page and signature page. 
+% It should be in sentence case, as it is printed on the bottom of the title page too.
+% Default: {\itshape LeTourneau University}
+%
+% \DescribeMacro{\school}
+% This macro sets the school, which is typeset below the university. 
+% It will automatically be converted to Uppercase by \LaTeX{}. 
+% Default: {\itshape School of Engineering and Engineering Technology}
+%
+% \DescribeMacro{\discipline}
+% This macro describes the field of study.
+% It appears on the title page in the text, ``in the Discipline of \meta{discipline},'' 
+% on the signature page, ``APPROVED FOR THE DISCIPLINE OF \meta{DISCIPLINE},'' 
+% and on the Abstract, ``Master of Science in \meta{discipline}.'' 
+% Default: {\itshape Underwater Basket Weaving}
+%
+% \DescribeMacro{\lastChapter}
+% This macro contains the chapter number and name of the last chapter as it 
+% should appear in the Abstract after the page count.
+% No structure is implemented currently to automatically supply the chapter of the
+% last page; therefore, the field defaults to a warning.
+% Default: {\itshape \textbf{Last Chapter Not Specified}}
+%
+% \subsubsection{Fine-Tuning Fields}
+%
+% The following fields are not necessary to typeset an appropriate set of preliminary pages,
+% but they may be needed to specify a different format when the automatic formatting
+% done by \LaTeX{} is incorrect or does not meet the template specifications.
+%
+% \DescribeMacro{\director}
+% This macro allows overwriting the thesis director's name in the Abstract.
+% The default value of the director is set as the text of first committee member before any
+% commas. If a comma appears in the director's name on the abstract or a different name
+% should be displayed, that name should be entered using this macro to explicitly set
+% the thesis director name.
+%
+% \DescribeMacro{\titlepageauthor}
+% This macro allows the author to style the
+% author name uniquely for the title page.
+% If this macro is not used, the name on the
+% title page will default to the author name.
+%
+% \DescribeMacro{\signaturepageauthor}
+% This macro allows the author to style the
+% author name uniquely for the signature page.
+% If this macro is not used, the name on the
+% signature page will default to the author name.
+%
+% \DescribeMacro{\centersectionwithnumber}
+% By default, section numbers, if enabled, do not affect the centering
+% of the section title on the page. The centered section title text simply
+% has the number placed to its left, such that the title will be typeset in
+% exactly the same place whether or not section numbers are enabled.
+% To disable this feature such that the title is centered with respect to
+% both the section number and text, use the macro
+% |\centersectionwithnumber| in the preamble.
+%
+% \DescribeMacro{\nosectionnumbers}
+% This macro disables section numbering in the body of the text.
+%
+% \DescribeMacro{\nosubsectionnumbers}
+% This macro disables sub-section numbering in the body of the text.
+%
+% \DescribeMacro{\setsubsubsecprestretch}
+% Call |\setsubsubsecprestretch|\marg{number} to change the
+% vertical separation between the body text and the beginning of a
+% new subsubsection. The stretch value \meta{number} is applied
+% as a stretch factor for the |\baselineskip| in addition to the
+% |\baselineskip| from a new paragraph. Therefore, a value of
+% \meta{number}=0 will add no extra space between the text and
+% the new subsubsection, while \meta{number}=1 adds a full
+% empty line between them. Default: \emph{0.5}.
+%
+% \DescribeMacro{\setcontentslabelwidth}
+% By default, 0.4 inches of space is reserved on the left for the
+% numbered labels of the List of Figures and List of Tables.
+% This space can be overwritten using the
+% |\setcontentslabelwidth|\marg{length} command in the preamble
+% after the |letuThesis| package has been loaded.
+% The single mandatory length argument must include units.
+%
+% \subsection{Sectioning Commands}
+%
+% Several commands are provided to split the thesis document into several sections
+% that have different formatting, similar to the commands found in the |book|
+% documentclass.
+% 
+% \DescribeMacro{\frontmatter}
+% The |\frontmatter| macro should be called after the document has begun, but before
+% any text is typeset. The macro ensures that a new page will be started and restarts
+% page numbering with Roman numerals on the following page.
+%
+% \DescribeMacro{\mainmatter}
+% The |\mainmatter| macro separates the preliminary pages from the main content
+% of the document. The macro ensures a new page will be started and restarts
+% page numbering with Arabic numerals. The macro also changes the format of the
+% chapter titles to be bold-face.
+%
+% \DescribeMacro{\backmatter}
+% The |\backmatter| macro changes the format of chapter titles to be regular text
+% so that unnumbered chapters after the appendices are formatted consistently with
+% chapters before the first. For appendices, use the |appendices| environment.
+%
+%
+% \subsection{Preliminary Pages}
+%
+% Several commands are provided to automatically format the required preliminary
+% pages for the thesis.
+%
+% \DescribeMacro{\maketitle}
+% The |\maketitle| macro typesets the title page, making use of the macros
+% set by the |\university|, |\school|, |\title|, |\author|, |\discipline|, and |\date|
+% macros described above. If the author is not automatically typeset as desired,
+% the automatically generated text can be overwritten for this page only
+% using the |\titlepageauthor| macro.
+%
+% \DescribeMacro{\makesignatures}
+% The |\makesignatures| macro typesets the signature page, making use of the macros
+% set by the |\university|, |\school|, |\title|, |\author|, |\discipline|, and |\committee|
+% macros described above.
+% Signature lines are generated for each committee member specified, with the chair
+% listed first. If the author is not automatically typeset as desired,
+% the automatically generated text can be overwritten for this page only
+% using the |\signaturepageauthor| macro.
+%
+% \DescribeMacro{\makecopyright}
+% The |\makecopyright| macro typesets the copyright statement page,
+% making use of the macros set by the |\date| and |\author|
+% macros described above.
+%
+% \DescribeMacro{\makeabstract}
+% The |\makeabstract| macro typesets the abstract page, making use of the macros
+% set by the |\author|, |\discipline|, |\committee|, and |\lastChapter|
+% macros described above. The macro accepts one optional argument
+% containing the abstract word count, and one mandatory argument
+% containing the text of the abstract.
+% The word count will be automatically supplied if not explicitly provided.
+% If the thesis director is not automatically typeset as desired,
+% the automatically generated text can be overwritten for this page only
+% using the |\director| macro.
+%
+% \DescribeMacro{\makeacknowledgments}
+% The |\makeacknowledgments| macro typesets the acknowledgments page.
+%
+%
+% \section{Tables and Graphics}
+% Specific guidelines are not provided in the Thesis guidelines for the
+% formatting of tables and graphics within the thesis document.
+% However, several environments and macros are provided for
+% easy access to aesthetic and consistent formatting.
+% \subsection{Tables}
+% \DescribeEnv{thesistable}
+% Table design is not specified in the
+% LeTourneau University Thesis guidelines, so alternative designs may be used
+% by loading separate packages.
+% The |thesistable| environment can either typeset a floating table or a long multi-page
+% table at the current position in the text. The environment takes six arguments,
+% some of which are optional, as described below:
+% \begin{enumerate}
+% \item \oarg{placementSpecifier} The first argument is optional and contains
+% the desired float position of the table. 
+% \begin{itemize}
+% \item If provided, the table will be typeset as
+% a floating table and must fit on a single page. The \meta{placementSpecifier}
+% field should be in the same format as would be provided to any other float,
+% e.g., |[!htb]|. The table will by typeset using the underlying |tabular| and |table| environments.
+% \item If omitted, the table will be typeset at the current position in the text, but
+% can span multiple pages. The table will be typeset using the underlying |longtable|
+% environment from the |longtable.sty| package.
+% \end{itemize}
+% \item \marg{columnAlignment} The second argument contains the column format,
+% specified in the same way as it would be for the |tabular| environment. Each column
+% desired in the table should be represented using a letter to encode the desired text
+% alignment within the column, e.g., |l| for left justified, |r| for right-justified,
+% |c| for centered, or |p{|\meta{width}|}| for a paragraph with line breaks. Other,
+% more complex options may also be used---see the documentation for the 
+% |tabular| environment.
+% \item \oarg{lofCaption} The third and fourth arguments contain the caption text for the
+% table. The third argument is optional. If provided, the \meta{lofCaption} caption will
+% be used to reference the table in the List of Tables instead of the \meta{caption}
+% that is located under the table in the body of the text. This optional argument is useful
+% when the caption contains extra information that should not be included in the List of Tables.
+% This option is also useful if the caption needs special formatting to be typeset correctly
+% in either location.
+% \item \marg{caption} The fourth argument will be used as the caption for the table.
+% If the third argument, \meta{lofCaption}, is not provided, the \meta{caption}
+% argument will also be used to refer to the table in the List of Tables.
+% \item \marg{label} The fifth argument is the table label for reference to the
+% table elsewhere in the document. Using the macro |\ref{|\meta{label}|}| in the text
+% will typeset this table's number.
+% \item \marg{titleRow} The sixth and final argument contains the entire title row of
+% the table. The title, or header, row is formatted differently than the body of the table.
+% As \meta{titleRow} is a part of the table, it must have the same format as any other 
+% row in the table, with cells separated by the |&| character. However, the
+% \meta{titleRow} should not have the final newline directive (|\\|). 
+% \end{enumerate}
+% The contents of the table should go between the |\begin| and |\end| directives
+% of the environment, formatted with the row and column separators
+% (|&| and |\\| respectively) like any other table.
+% The last row of the table must contain the column separator (|\\|) to avoid errors.
+%
+%
+% \subsection{Graphics Commands}
+%
+% \subsubsection{Pictures}
+%
+% This package also defines several commands to help typeset figures in a consistent manner.
+% These commands should be used within a |figure| environment before the |\caption|
+% and |\label| commands. For image files such as |.jpg| or |.png| files, use the
+% |\includegraphics| \DescribeMacro{\includegraphics}
+% command from the |graphicx| package.
+% 
+% e.g. |\includegraphics[width=.5\textwidth]{figures/pictures/image}|
+%
+% \subsubsection{Diagrams}
+% \DescribeMacro{\includediagram}
+% The |\includediagram| macro is used to place an image of a compiled \LaTeX{} page in the current document.
+% It is intended for use with Ti\emph{k}Z diagrams compiled as standalone documents.
+% It is a simple wrapper function for the |\includestandalone| command
+% from the |standalone| package with a similar interface to |\includegraphics|
+% from the |graphicx| package. No optional arguments are supported---the size of
+% the diagram is set by the source document.
+% The diagram will be recompiled if the compiled |.pdf| is older than the |.tex| source file or if the |.pdf| file does not yet exist.
+% Otherwise, the already-compiled |.pdf| will be used.
+%
+% The \emph{shell escape} option must be enabled to use this command.
+% See the section on the \emph{shell escape} option below.
+%
+% e.g. |\includediagram{figures/diagrams/flowchart}|
+%
+% \subsubsection{MATLAB plots}
+% \DescribeMacro{\includeplot}
+% The |\includeplot| macro is intended for MATLAB figures processed by the
+% LaPrint\footnote{\url{https://www.mathworks.com/matlabcentral/fileexchange/4638-laprint}}
+% MATLAB function.
+% The |\includeplot| macro is a wrapper for the |\psfragfig| command from the |\pstool| package.
+% It supports optional arguments like the |\includegraphics| command.
+%
+% The \emph{shell escape} option must be enabled to use this command.
+% See the section on the \emph{shell escape} option below.
+%
+% e.g. |\includeplot[width=.5\textwidth]{figures/plots/graph}|
+%
+% \subsubsection{The \emph{shell escape} option}
+% Both the |standalone| package to typeset diagrams and the
+% |pstool| package used to typeset plots make use of additional \LaTeX{} commands that are typically disabled by default for security reasons.
+% To enable these commands, the ``shell escape'' option needs to be enabled.
+%
+% From the command line, add |--shell-escape| as an argument for the program |pdflatex.exe| before the file name to typeset.
+% In TeXworks, click on ``Edit $>$ Preferences.'' Under the ``Typesetting'' tab, select the processing tool you want to modify.
+% Click ``Edit'' and add |--shell-escape| before the |$fullname| variable.
+%
+% \section{Known Bugs}
+% \begin{enumerate}
+% \item
+% If section numbers are left turned on in the body of the document and a section
+% label takes almost the whole line or more than a line, the section number can
+% be pushed outside of the page margins. The section number is typeset as if it had
+% no width in order to preserve the centered look of the text itself. Line breaks should
+% manually be added to the title.
+%
+% \item
+% Upon loading a new version of MiKTeX on another computer,
+% my \LaTeX{} documents would no longer compile.
+% It seems that the fonts were not being loaded right,
+% and pdfLaTeX was not able to typeset the document.
+% I was getting the error message, ``Font ec-qtmr at 480 not found.''
+% 
+% This problem was fixed by following the steps as laid out by ltcomdata
+% and the comment by CarLaTeX on 
+% Stack Exchange.\footnote{\url{https://tex.stackexchange.com/questions/280631}}
+% Open the command prompt with administrator privileges.
+% Then enter the following commands in order:
+%
+% |updmap --admin|
+%
+% |initexmf --admin --mkmaps|
+%
+% |initexmf --mkmaps|
+%
+% \item
+% The |\makeabstract| macro automatically provides a word-count
+% of the abstract text. If the text of the abstract is not right against
+% the surrounding brackets, extra words will be added to the
+% word-count. Either place the brackets right next to the abstract text,
+% or comment out the newline characters at the end of the line,
+% as shown in the example below:
+%
+% |\makeabstract{%|
+%
+% |The body text of the abstract.%|
+%
+% ||
+%
+% |Second paragraph.%|
+%
+% |}|
+%
+% \item
+% Plots added to the document using the |\includeplot| command may be slightly larger than
+% the specified width due to the overlaid text extending outside the |.eps| figure's bounding box.
+% In most cases, using the optional argument |[width=0.99\textwidth]| fixes bad-box errors.
+%
+% \item
+% If a |thesistable| environment typeset as a |longtable| has a moderately long caption,
+% justification of the table caption on subsequent pages after the first may fail to recognize
+% the end of the line. This is due to the ``-- Continued from previous page'' text being
+% included in the caption and moving to the next line. \LaTeX{} then thinks the line should
+% be spread out across the entire text width as it is technically the penultimate line, while
+% to the reader, the last line of the caption should be ragged-right.
+%
+% \end{enumerate}
+%
+%
+% \StopEventually{\PrintChanges}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{Implementation}
+%
+% \subsection{Basic Geometry and Typesetting}
+%
+% Load the packages needed for formatting. The |geometry| package
+% provides options for setting the margins. The package is loaded with
+% options specifying that all margins should be 1 inch,
+% while the left margin is 1.5 inches to allow for binding. 
+% The page numbers (in the footer) are placed 0.5 inches
+% from the body text.
+% The |setspace| package is also loaded
+% for double-spacing the document.
+% The |indentfirst| package ensures that the first paragraph
+% in a section or chapter is also indented,
+% which is false in a default \LaTeX{} document.
+% Finally, the extra space between the top of the printable page
+% and the text is removed.
+%    \begin{macrocode}
+\RequirePackage[margin=1in, left=1.5in, footskip=0.5in]{geometry}
+\RequirePackage{setspace}
+\RequirePackage{indentfirst}
+\topskip=0pt
+%    \end{macrocode}
+%
+% Include libraries to load the |newtxtext| and |newtxmath| fonts,
+% based on the \TeX{} Gyre Termes font,
+% in turn based on Times New Roman.
+% Set the size of a paragraph indent to be 0.5 inches.
+% Set the spacing using the command |\doublespaced|
+% for the entire document. If needed, the commands
+% |\onehalfspacing| and |\singlespacing| are available for portions
+% of the document that should not be double spaced.
+% (A base \LaTeX{} command to achieve double spacing is
+% |\linespread{1.6}|, though this command did not seem to
+% give as nice results.)
+%    \begin{macrocode}
+\RequirePackage[largesc]{newtxtext}
+\RequirePackage[varg]{newtxmath}
+%\RequirePackage[T1]{fontenc}
+\setlength{\parindent}{0.5in}
+\doublespacing
+%    \end{macrocode}
+%
+% Set values for the penalties for widow and orphan lines.
+% Values of 10000 indicate infinite badness, so \LaTeX{} will avoid
+% widows and orphans if at all possible.
+%    \begin{macrocode}
+\widowpenalty10000
+\clubpenalty10000
+%    \end{macrocode}
+%
+%
+% \subsection{Preamble Fields}
+%
+% In order to process strings in the arguments of the preamble fields and,
+% later on, extensively with formatting the preliminary pages,
+% the |xstring| package is used.
+%    \begin{macrocode}
+\RequirePackage{xstring}
+%    \end{macrocode}
+%
+% \subsubsection{Recommended Fields}
+% For each of the commands used to enter information in the
+% preamble (with noted exceptions), a command is created to enter
+% the information followed by the definition of a default value.
+% No new command is created for the \meta{author} since the
+% |report| class already provides an |\author| command.
+% Likewise, the |report| class already defines the |\date| command
+% and the default |\@date| macro, so they are not redefined here.
+% The commands |\title| and |\author| are redefined while the rest
+% of the fields are new commands provided by this package.
+%
+% Default values are specified with the |\providecommand| macro to
+% allow different defaults to be specified before this package is loaded.
+%
+% \begin{macro}{\title}
+% Only the |\title| command edits the formatting of the argument
+% supplied before saving it in its global content macro. 
+% \DescribeMacro{\expandarg}
+% First, |\expandarg| is called to expand the first string in each
+% argument to the string-processing commands from the |xstring|
+% package. To keep a macro from being expanded, an |\empty|
+% macro is appended beforehand to be expanded to nothing first.
+% The first three lines replace any |\par|s, |\newline|s, and |\\|s
+% in the supplied title with a |\break| macro, which is the only one
+% that can be typeset correctly.
+% Then, any spaces before a |\break| macro are removed to ensure
+% that each line of the title is truly centered, not slightly shifted to the
+% left by a trailing space on the line.
+% Finally, set the default title, |\@title|, to be used if the |\title|
+% command is never issued in the document.
+%    \begin{macrocode}
+\renewcommand{\title}[1]{%
+  \expandarg
+  \StrSubstitute{#1}{\empty\par}{\empty\break}[\@title]
+  \StrSubstitute{\@title}{\empty\newline}{\empty\break}[\@title]
+  \StrSubstitute{\@title}{\empty\\}{\empty\break}[\@title]
+  \global\StrSubstitute{\@title}{\space\break}{\empty\break}[\@title]
+}
+\renewcommand*\@title{How to Prepare\break the Perfect Thesis Document}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\author}
+% Set the |\@author| macro default value.
+%    \begin{macrocode}
+\renewcommand*\@author{Firstname Lastname}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\committee}
+% Define the |\committee| command and set the |\@committee|
+% macro default value.
+%    \begin{macrocode}
+\newcommand{\committee}[1]{\gdef\@committee{#1}}
+\providecommand*\@committee{%
+  Dr. William Graph, PhD \\ Dr. Jane Doe, PhD, PE \\ Dr. Doe Do, PhD
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\university}
+% Define the |\university| command and set the |\@university|
+% macro default value.
+%    \begin{macrocode}
+\newcommand{\university}[1]{\gdef\@university{#1}}
+\providecommand*\@university{LeTourneau University}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\school}
+% Define the |\school| command and set the |\@school|
+% macro default value.
+%    \begin{macrocode}
+\newcommand{\school}[1]{\gdef\@school{#1}}
+\providecommand*\@school{%
+  School of Engineering and Engineering Technology
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\discipline}
+% Define the |\discipline| command and set the |\@discipline|
+% macro default value.
+%    \begin{macrocode}
+\newcommand{\discipline}[1]{\gdef\@discipline{#1}}
+\providecommand*\@discipline{Underwater Basket Weaving}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\lastChapter}
+% Define the |\lastChapter| command and set the |\@lastChapter|
+% macro default value.
+%    \begin{macrocode}
+\newcommand{\lastChapter}[1]{\gdef\@lastChapter{#1}}
+\providecommand*\@lastChapter{\textbf{Last Chapter Not Specified}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsubsection{Fine Tuning Fields}
+% The optional fields do not provide a default value since their value
+% is set automatically by \LaTeX{} if the macro is not used.
+% The definitions are set here.
+%
+% \begin{macro}{\director}
+%    \begin{macrocode}
+\newcommand{\director}[1]{\gdef\@director{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\titlepageauthor}
+%    \begin{macrocode}
+\newcommand{\titlepageauthor}[1]{\gdef\@titlepageauthor{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\titlepageauthor}
+%    \begin{macrocode}
+\newcommand{\signaturepageauthor}[1]{\gdef\@signaturepageauthor{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\centersectionwithnumber}
+% Define the default formatting of section numbers inside a left
+% overlap macro. Then provide a new macro to overwrite the default
+% definition to disable the left overwrite.
+%    \begin{macrocode}
+\newcommand\centersectionwithnumber{\gdef\sec@numformat{}}
+\providecommand*\sec@numformat[1]{\llap{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\nosectionnumbers}
+% \begin{macro}{\nosubsectionnumbers}
+% Internal macros for the numbering of the section and subsection are
+% enabled by default, but the commands
+% |\nosectionnumbers| and |\nosubsectionnumbers|
+% can overwrite the default behavior.
+%    \begin{macrocode}
+\newcommand{\nosectionnumbers}{\gdef\@sectionnumbering{}}
+\providecommand*\@sectionnumbering{\sec@numformat{\thesection\quad}}
+\newcommand{\nosubsectionnumbers}{\gdef\@subsectionnumbering{}}
+\providecommand*\@subsectionnumbering{\thesubsection\quad}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\setsubsubsecprestretch}
+% Set the default baseline stretch of 0.5 and create a command
+% for the user to overwrite the default.
+%    \begin{macrocode}
+\newcommand{\setsubsubsecprestretch}[1]{%
+  \gdef\subsubsection@stretch{#1}}
+\providecommand*\subsubsection@stretch{0.5}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\setcontentslabelwidth}
+% Define the default width for the labels in the List of Tables and List of Figures,
+% and define a command to overwrite the default value.
+%    \begin{macrocode}
+\newlength{\contents@labelwidth}
+\setlength{\contents@labelwidth}{0.4in}
+\newcommand\setcontentslabelwidth[1]{%
+  \setlength{\contents@labelwidth}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Preliminary Pages}
+%
+% Each of the preliminary pages with complex formatting has a
+% command to typeset it:
+% |\maketitle|, |\makesignatures|, |\makecopyright|,
+% |\makeabstract|, and |\makeacknowledgments|.
+%
+% \subsubsection{Title Page}
+% First, a |\def| is used to define formatting to be
+% repeated on both the title and signatures page.
+% Spacing within this command has no stretchable glue,
+% so the text will be exactly duplicated on the two pages.
+% Since the |\doublespacing| of the |setspace| package
+% actually sets the |\baselinestrech| value to 1.665 in order to
+% approximately double the whitespace between the lines,
+% an empty line between the University and the School
+% needs 2/1.665 = 1.2 |\baselineskip|s of space.
+% Since 1 baseline is already added from the newline,
+% and an extra 0.6 baseline is added from the formatting
+% the chapter, an additional space of |-0.4\baselineskip|
+% is placed between the University and School.
+% A constant amount of space (5 picas) is added between
+% the School and Title so that the text is exactly duplicated
+% on the Title and Signature Pages.
+%    \begin{macrocode}
+\gdef\titlepage@text{%
+	{\vspace{-0.4\baselineskip}\MakeUppercase{\@school}\par}%
+    \vskip 5pc%
+    {\MakeUppercase\@title\par}}
+%    \end{macrocode}
+%
+% \begin{macro}{\maketitle}
+% The |\maketitle| macro typesets the title page.
+% A centered environment contains the content of the title page.
+% Each field of text is contained within a group (|{...}|), and is
+% separated by different amounts of vertical space,
+% measured in picas (1 pica = 12 points).
+% Spacing on the page other than those contained in the
+% |\titlepage@text| macro are given a minimum space,
+% measure in picas, with added vertical glue, |\vfill|,
+% which \LaTeX{} can expand to optimally fill the page.
+%
+% The author name is typeset within a centered tabular environment.
+% If not already explicitly defined, the
+% \DescribeMacro{\@titlepageauthor}|\@titlepageauthor|
+% is defined as the thesis author.
+%    \begin{macrocode}
+\renewcommand{\maketitle}{%
+  \chapter*{\@university}
+  \begin{center}%
+    \titlepage@text%
+    \vskip 3pc \vfill
+    {\singlespacing by\par%
+    \begin{tabular}[t]{c}
+      \providecommand{\@titlepageauthor}{\@author}
+      \@titlepageauthor
+    \end{tabular}\par}
+    \vskip 3pc \vfill
+    {A thesis submitted in partial fulfillment of \break%
+    the requirements for the degree of Master of Science \break%
+    in the Discipline of \@discipline \par}
+    \vskip 3pc
+    {\@university\par}
+    \vskip 2pc
+    {\@getYear\@date \par}
+    \vskip 4pc
+  \end{center}\par
+%    \end{macrocode}
+%
+% Finally, glue is added after the centered environment to allow
+% \LaTeX{} to expand the empty space before the |\null|
+% placeholder at the end of the page.
+% The page is specified to contain no page number.
+% Then the |\maketitle| and |\@titlepageauthor| macros are
+% disabled to prevent accidental later use.
+%    \begin{macrocode}
+  \vfill\null
+  \thispagestyle{empty}
+  \global\let\maketitle\relax
+  \global\let\@titlepageauthor\@empty
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Signatures Page}
+% \begin{macro}{\makesignatures}
+% The |\makesignatures| macro typesets the signature page.
+% The beginning of the macro is identical to the title page to ensure that the school name
+% and thesis title match on both pages.
+%
+% A centered environment contains the content of the signatures page.
+% Each field of text is contained within a group (|{...}|), and is separated by
+% different amounts of vertical space, measured in picas (1 pica = 12 points).
+% Exact amounts of space are placed between the top of the page and the university
+% name, and between the university name and the thesis title. Exact spacing allows
+% the spacing to exactly duplicate the spacing on the title page.
+% Other spacings on the page
+% are given a minimum space, measure in picas, with added vertical glue, |\vfill|,
+% which \LaTeX{} can expand to optimally fill the page.
+%
+% The author name is typeset within a centered tabular environment.
+% If not already explicitly defined, the
+% \DescribeMacro{\@signaturepageauthor}|\@signaturepageauthor| is defined
+% as the thesis author.
+%
+% The signature lines are typeset using the internal macro
+% \DescribeMacro{\@typesetCommittee}|\@typesetCommittee|, 
+% described below.
+%    \begin{macrocode}
+\newcommand{\makesignatures}{%
+  \chapter*{\@university}
+  \begin{center}%
+    \titlepage@text%
+    \vskip 1pc
+    {\singlespacing by\par%
+    \begin{tabular}[t]{c}
+      \providecommand{\@signaturepageauthor}{\@author}
+      \@signaturepageauthor
+    \end{tabular}\par}
+    \vskip 1pc
+    {\MakeUppercase{A thesis \break%
+    approved for the discipline of \break%
+    \@discipline} \par}
+    \vskip 48pt minus 12pt \vfill
+    {By Thesis Committee\par}
+    {\@typesetCommittee\par}
+  \end{center}\vskip -24pt \par\nopagebreak
+%    \end{macrocode}
+%
+% Finally, glue is added after the centered environment to allow \LaTeX{} to expand the
+% empty space before the |\null| placeholder at the end of the page.
+% Then, various macros are disabled to prevent accidental later use.
+%    \begin{macrocode}
+  \vfill\null
+  \global\let\makesignatures\relax
+  \global\let\@committee\@empty
+  \global\let\@university\@empty
+  \global\let\@school\@empty
+  \global\let\@signaturepageauthor\@empty
+  \global\let\committee\relax
+  \global\let\university\relax
+  \global\let\school\relax
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Copyright Statement Page}
+% \begin{macro}{\makecopyright}
+% The |\makecopyright| macro typesets the copyright statement page.
+% The copyright starts a new unnumbered chapter and adds the chapter to the
+% Table of Contents. The |textcomp| package is used to typeset the copyright symbol
+% with a good font.
+%
+% The header is centered on the top lines, and the text of the copyright statement
+% is spaced in a paragraph below.
+%    \begin{macrocode}
+\RequirePackage{textcomp}
+\newcommand{\makecopyright}{%
+  \chapter*{Copyright Statement}
+  \addcontentsline{toc}{chapter}{COPYRIGHT}
+  \vskip 0.5pc
+  {\centering Copyright \copyright{} \@getYear\@date\ by \@author\par}
+  \vskip 2.5pc
+  All rights reserved. No part of this publication may be reproduced,
+  stored in a retrieval system, or transmitted, in any form or by any
+  means (electronic, mechanical, photocopying, recording, or
+  otherwise) without the prior written permission of the author.\par
+  \vfill
+%    \end{macrocode}
+% If the |\makecopyright| macro was called, the |\makecopyright|, |\@getYear|, |\@date|,
+% and |\date| macros are disabled to prevent accidental later use.
+% Since the copyright section is optional to the thesis, these commands are
+% disabled again by the |\makeabstract| macro described below.
+%    \begin{macrocode}
+  \global\let\makecopyright\relax
+  \global\let\@getYear\@empty
+  \global\let\@date\@empty
+  \global\let\date\relax
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Abstract Page}
+% \begin{macro}{\makeabstract}
+% The |\makeabstract| macro typesets the Abstract page and takes one argument
+% containing the abstract text. It uses the package |lastpage| to obtain the page
+% number of the last page of the thesis.
+% The abstract starts a new unnumbered chapter and adds the chapter to the
+% Table of Contents.
+%    \begin{macrocode}
+\RequirePackage{lastpage}
+\newcommand{\makeabstract}[2][]{%
+  \chapter*{Abstract}
+  \addcontentsline{toc}{chapter}{ABSTRACT}
+%    \end{macrocode}
+% 
+% The words in the abstract can be automatically counted if no special
+% characters are found in the abstract.
+% The words in the abstract are counted by counting the spaces, |\space|, and
+% paragraphs, |\par| in the abstract text.
+% The number of spaces is saved to a counter and incremented by the number
+% of paragraphs. Then the counter is incremented by one more since there will
+% be one more word than the total of the counted spaces and paragraphs.
+% First, the |\count@given| macro stores the value of the optional argument,
+% containing the number of words to display. Then, If that field is empty,
+% the auto-count function is skipped and the |\@abstractwordcount| macro
+% is set to the value given. Otherwise, the auto-count function will run.
+%    \begin{macrocode}
+  \def\count@given{#1}
+  \newcount\@abstractwordcount
+  \ifx\count@given\empty
+    \typeout{optional argument was omitted}
+    \fullexpandarg
+    \StrCount{#2}{\space}[\@countedSpaces]
+    \StrCount{#2}{\par}[\@countedPars]
+    \@abstractwordcount \@countedSpaces\relax
+    \advance\@abstractwordcount \@countedPars\relax
+    \advance\@abstractwordcount 1\relax
+  \else
+    \typeout{optional word count was given: `#1'}
+    \@abstractwordcount #1\relax
+  \fi
+%    \end{macrocode}
+%
+% If not already explicitly defined, or successfully set by the |\@typesetMember| macro,
+% \DescribeMacro{\@director}|\@director| is defined as \textbf{Director not found!}
+% to warn the user to set the director using the |\director| macro.
+%
+% The title of the thesis is reformatted to remove any line-breaks by replacing |\break|s
+% with spaces. Then the fully expanded title is interpreted as a token to consolidate
+% consecutive spaces.
+%    \begin{macrocode}
+  \providecommand*{\@director}{\textbf{Director not found!}}
+  \expandarg
+  \StrSubstitute{\@title}{\empty\break}{\space}[\@title]
+  \fullexpandarg
+  \tokenize{\@title}{\@title}
+%    \end{macrocode}
+%
+% The first lines of the abstract are not indented.
+% Grouped commands form the centered word count at the beginning of the abstract text,
+% and then the text of the abstract itself is typeset.
+%    \begin{macrocode}  
+  \noindent\@author\space (Master of Science in \@discipline)\par
+  \noindent\@title\par
+  \noindent Directed by \@director\par
+  \noindent\pageref{LastPage} pp., \@lastChapter\par
+  {\centering(\the\@abstractwordcount\space words)\par}
+  #2\par
+%    \end{macrocode}
+%
+% Remaining macros are disabled to prevent accidental later use, some of which may
+% have already been disabled by the |\makecopyright| macro if called.
+%    \begin{macrocode}
+  \global\let\makeabstract\relax
+  \global\let\makecopyright\relax
+  \global\let\@getYear\@empty
+  \global\let\@title\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@discipline\@empty
+  \global\let\@lastChapter\@empty
+  \global\let\@director\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\discipline\relax
+  \global\let\lastChapter\relax
+  \global\let\director\relax
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Acknowledgments Page}
+% \begin{macro}{\makeacknowledgments}
+% The |\makeacknowledgments| macro typesets the acknowledgments page.
+% The acknowledgment starts a new unnumbered chapter and adds the chapter to the
+% Table of Contents.
+%    \begin{macrocode}
+\newcommand{\makeacknowledgments}[1]{%
+  \chapter*{Acknowledgments}
+  \addcontentsline{toc}{chapter}{ACKNOWLEDGMENTS}
+  #1\par
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Internal Commands for Preliminary Pages}
+%
+% \begin{macro}{\@getYear}
+% The |\@getYear| macro strips off and returns the last four characters
+% of the input argument. When a typical date is input to this macro,
+% the macro evaluates to the four-digit expansion of the year. The
+% |\fullexpandarg| ensures that the input argument is fully expanded before
+% the characters are read and returned.
+%    \begin{macrocode}
+\newcommand\@getYear[1]{\fullexpandarg\StrRight{#1}{4}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@typesetCommittee}
+% The lines for committee member signatures are typeset recursively one at a time.
+% The recursive operation is handled by conditional command, |\IfSubStr|, checking
+% if the remaining committee members string contains the |\\| character sequence.
+% Note, that the first macro in each argument will be expanded once, as specified
+% by the |\expandarg| macro, so macros that should not be expanded (i.e. |\\|) are
+% prefixed with |\empty|, which expands to nothing.
+%
+% If the |\@committee| macro contains a |\\| sequence,
+% the first committee member before the |\\| is saved
+% into the macro |\@member|, and the |\@committee| macro
+% is updated to be the string following the |\\| characters.
+% The \DescribeMacro{\@typesetMember}|\@typesetMember| macro
+% is used to make the signature line for the member,
+% and the |\typesetCommittee| macro recursively typesets the remainder of the
+% committee.
+%
+% When the |\@committee| macro no longer contains a |\\| sequence,
+% the recursive algorithm has finished. The remaining committee members string
+% is typeset as the last member and the |\@committee| string is cleared to ensure
+% that no further processing is done on it.
+%    \begin{macrocode}
+\newcommand{\@typesetCommittee}{%
+  \expandarg
+  \IfSubStr{\@committee}{\empty\\}{%
+    \StrCut{\@committee}{\empty\\}{\@member}{\@committee}
+    \@typesetMember\@member
+    \@typesetCommittee{\@committee}
+  }{%
+    \@typesetMember\@committee
+    \global\let\@committee\@empty
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% The |\@typesetMember| macro is used to draw the signature line and name-label
+% for each committee member. Additionally, the first committee member should be
+% designated as the chair. A conditional, \DescribeMacro{@ischair}|@ischair|,
+% is declared globally and set to true. 
+% After the first committee member's signature line has been typeset, the conditional
+% is set false and remains so for the remainder of the committee. 
+% The \DescribeMacro{\@chairDescriptor}|\@chairDescriptor|
+% macro contains the text to be placed after the signature line of the chair member.
+%    \begin{macrocode}
+\newif\if@ischair
+\@ischairtrue
+\newcommand{\@chairDescriptor}{,~Chair}
+%    \end{macrocode}
+%
+% \begin{macro}{\@typesetMember}
+% The |\@typesetMember| macro takes one argument, \meta{member}.
+% Since \meta{member} may contain a space at its beginning, the space
+% is removed for consistent formatting.
+%    \begin{macrocode}
+\newcommand{\@typesetMember}[1]{%
+  \expandarg
+  \IfBeginWith{#1}{\space}{\StrBehind{#1}{\space}[#1]}{}
+%    \end{macrocode}
+%
+% Next, the |@ischair| conditional is checked to determine if this signature line
+% should be formatted for the chair member. If |@ischar| is true, the contents of
+% the member string on the input before any commas (after which the degrees
+% are typically listed) are saved in the |\@chair| macro.
+% If the \DescribeMacro{\@director}|\@director| macro (used in the Abstract)
+% has not already been explicitly defined,
+% |\@director| is globally defined with the expansion of the |\@chair| macro,
+% otherwise no action is taken.
+% If the |@ischair| macro indicates that the current member is not the chair member
+% the |\@chairDescriptor| is redefined as an empty macro.
+%    \begin{macrocode}
+  \if@ischair
+    \StrBefore{#1}{,}[\@chair]
+    \@ifundefined{@director}{\global\edef\@director{\@chair}}{}
+  \else
+    \renewcommand{\@chairDescriptor}{}
+  \fi
+%    \end{macrocode}
+%
+% The signature line is now ready to typeset. Two picas (24 points) of blank space
+% are reserved for the physical signatures themselves.
+% Then, a box is made to contain the line and the member's name with a width
+% half the width of the printable area. A 0.4 point line is drawn across this box
+% with the |\@chairDescriptor| label (possibly empty) added as a right-overlap
+% field, allowing it to extend outside of the containing box.
+%
+% Negative vertical space of 10 points is added to ensure that the member's name
+% is right against the signature line, and the member's name is typeset in yet
+% another box to ensure that it remains on a single line, even if it is too long
+% to be contained by the larger box.
+%    \begin{macrocode}
+  \vspace{2pc}
+  \parbox{0.5\linewidth}{%
+    \rule{\linewidth}{0.4pt}\rlap{\@chairDescriptor}\par
+    \vspace{-10pt}\mbox{#1}
+  }\par
+%    \end{macrocode}
+% Finally, the |@ischair| conditional is set false to ensure that no remaining
+% member's signature lines are indicated as chair members.
+%    \begin{macrocode}
+  \@ischairfalse
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{Formatting Titles within the Body Text}
+%
+% To format the section titles in the body of the paper, the
+% package |titlesec| is used. The package option |nobottomtitles*| ensures that section
+% titles are not allowed to appear near the end of a page. The space needed to allow a
+% title to be typeset is approximately given by
+% |\renewcommand{\bottomtitlespace}{|\meta{length}|}|.
+%    \begin{macrocode}
+\RequirePackage[nobottomtitles*]{titlesec}
+%    \end{macrocode}
+% 
+% \begin{macro}{\@chapterFontStyle}
+% The |\@chapterFontStyle| macro stores the formatting desired for the chapter
+% title name. For the frontmatter (content at the beginning of the document 
+% while the pages are numbered
+% using Roman numerals), the chapter titles should be typeset in normal text.
+% However, for the mainmatter (content in the main content sections with 
+% Arabic numeral numbering), the 
+% chapter label should be normal but the chapter title should be emboldened.
+% This macro is initialized to embolden the text as for the mainmatter,
+% causing individual chapters to be typeset correctly without needing to call
+% the |\mainmatter| command (doing so could cause problems with page
+% numbering). The |\@chapterFontStyle| is redefined to make the
+% chapter titles normal using the |\frontmatter| macro.
+% Upon executing the
+% |\mainmatter| macro, the |\@chapterFontStyle| macro will be redefined
+% to format the title using |\bfseries|.
+%    \begin{macrocode}
+\newcommand{\@chapterFontStyle}{\bfseries}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Chapters}
+% Chapter titles in the body of the text are next formatted using the
+% |\titleformat| command from the |titlesec| package. The macro
+% redefines the |\chapter| command with the desired formatting.
+% The optional argument, \meta{shape} = display, puts the section
+% label in a separate paragraph from the section title.
+% The \meta{format} argument makes the 
+% font normal sized, centers the title, ensures that a multi-line
+% chapter title will be single-spaced, and adds extra vertical space.
+% The |\capital@letterheight| macro saves the height of a capital
+% letter, which is used in an expression to place the title at the very
+% top of the printable page (it is move down an inch later).
+% The \meta{label} argument formats the label text to be have an
+% uppercase chapter name followed by the chapter number. 
+% The macro |\chaptertitlename| is redefined from Chapter to
+% Appendix by the |titlesec| package to ensure that appendices are
+% labeled with the appropriate section name.
+% The \meta{sep} argument places a one line space (|\baselineskip|)
+% between the section number and the section title.
+% The \meta{before-code} formats the title and makes the title
+% uppercase. As describe above, the |\@chapterFontStyle| macro
+% will either keep the text normally formatted or emboldened,
+% depending on the section.
+% Finally, |\titlespacing| is used to add an extra inch before the title
+% (making the total margin 2 inches).
+% Since the |\doublespacing| of |setspace| sets
+% |\baselinestretch| = 1.665, an empty line has a width of
+% 1/1.665 = |0.6\baselinestretch|.
+% |\titlespacing| also adds 0.6 of a |\baseline| between the
+% chapter title and any following content for an empty line.
+%    \begin{macrocode}
+\newlength{\capital@letterheight}
+\titleformat{\chapter}[display]%
+  {\settoheight{\capital@letterheight}{H}
+  \normalfont\filcenter\singlespacing%
+  \vspace{\dimexpr -2\baselineskip + \capital@letterheight \relax}}%
+  {\MakeUppercase{\chaptertitlename} \thechapter}%
+  {\baselineskip}%
+  {\@chapterFontStyle\MakeUppercase}%
+\titlespacing{\chapter}{0pt}{1in}{0.6\baselineskip}
+%    \end{macrocode}
+%
+% \subsubsection{Sections}
+% Formatting for the section title is achieved similarly.
+% The optional argument, \meta{shape}~=~|block|, puts the section label
+% and title in a block (paragraph) without additional formatting.
+% The \meta{format} label contains the beginning of an environment---defined 
+% in the |changepage| package---to shrink
+% the margins by 0.5 inches on both sides to keep the section number inside
+% the margins when section numbering is on. No check is made to disable
+% this behavior when section numbering is off---the narrow margins will
+% be maintained. The environment is turned off in the
+% optional \meta{code-after} block.
+% The \meta{label} argument prints the section number followed by a
+% |\quad| space. There is 0 points of separation between the section
+% number and the section title. No special format is applied before the
+% section title is typeset.
+%    \begin{macrocode}
+\RequirePackage{changepage}
+\titleformat{\section}[block]{%
+    \begin{adjustwidth}{0.5in}{0.5in}
+    \normalfont\bfseries\filcenter\singlespacing
+  }{\@sectionnumbering}%
+  {0pt}{}
+  [\end{adjustwidth}]
+%    \end{macrocode}
+%
+% \subsubsection{Subsections}
+% The subsection formatting is very similar to the section format, except
+% that it is italicized and the \meta{shape} argument is specified as
+% |hang|, which typesets a hanging label.
+% A ragged-right argument is also supplied to let full title lines 
+% move onto the next line
+% without hyphenating or spilling into the margin.
+%    \begin{macrocode}
+\titleformat{\subsection}[hang]%
+  {\normalfont\itshape\singlespacing\raggedright}
+  {\@subsectionnumbering}{0pt}{}
+%    \end{macrocode}
+%
+% \subsubsection{Subsubsections}
+% The subsubsection format is specified to be in-line with the text. Therefore,
+% the \meta{shape} = |runin| was used to get a run-in title. Half a line of extra
+% space is added before the subsubsection with the |\vspace| macro,
+% by scaling the |\baselineskip| length.
+% The \meta{label} is left empty to avoid typesetting the subsubsection label.
+% No space is specified between the label (which does not exist) and the
+% subsubsection title. The title is preceded by a horizontal space equal to a
+% paragraph indentation and is followed by a colon before the text of the paragraph.
+%    \begin{macrocode}
+\titleformat{\subsubsection}[runin]%
+  {\normalfont}{}{0pt}{}[:]
+\titlespacing{\subsubsection}{\parindent}%
+  {\subsubsection@stretch\baselineskip}{\wordsep}
+%    \end{macrocode}
+% 
+%
+% \subsection{Formatting the Table of Contents}
+%
+% To format the titles within the Table of Contents (\toc), the
+% package |titletoc| is used. To include the Bibliography and Index
+% in the \toc, the |tocbibind| package is used, with the optional argument
+% specified not to include the \toc again and use chapter level headings if possible.
+% Finally, the Bibliography heading is entered in all-caps to appear formatted correctly
+% in the Table of Contents.
+%    \begin{macrocode}
+\RequirePackage{titletoc}
+\RequirePackage[nottoc, chapter]{tocbibind}
+\settocbibname{BIBLIOGRAPHY}
+%    \end{macrocode}
+%
+% For all entries in the \toc, the right margin should be equal.
+% The macro |\contentsmargin| reserves 2em of space at all
+% \toc levels for the page number on the right hand side.
+% The optional argument adds extra space for lines before the last
+% to ensure that they do not go past the leader lines of the last row.
+% Text on lines before the last cannot be within half and inch
+% of the page numbers.
+% The optional arguments adds extra space for these rows.
+%    \begin{macrocode}
+\contentsmargin[0.5in]{2em}
+%    \end{macrocode}
+%
+% \begin{macro}{\@tocChapterName}
+% The |\@tocChapterName| macro stores the name of the current
+% section heading at the chapter level, either |\chaptername| or
+% |\appendixname|. The macro is initialized as the |\chaptername|,
+% but will be redefined later when the appendix environment begins.
+% This macro ensures that Chapters and Appendices are given
+% appropriate labels in the \toc.
+%    \begin{macrocode}
+\newcommand{\@tocChapterName}{\chaptername}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\leaderStyle}
+% The |\leaderStyle| macro stores the formatting desired for the leader lines in the
+% \toc. This macro is used by all levels of sections in the \toc to ensure that
+% formatting is consistent. The command adds a small space between the text
+% before and the leader line, then defines the leader line as dots with 3pts of separation.
+%    \begin{macrocode}
+\newcommand{\leaderStyle}{\,\titlerule*[3pt]{.}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% A heading, labeled \textit{Page}, is desired above the page
+% numbers on the right of the \toc. Therefore, an entry is added
+% to the table of contents, named \textit{Page},
+% with horizontal space beforehand filled up.
+% The extra vertical space of |0.6\baselineskip| that was added
+% by the chapter title and the extra |\baselineskip| from the second
+% |\par| command are removed with the |\vspace| command.
+% The \toc is set to display headings from 4 levels:
+% Chapters, Sections, Subsections, and Subsubsections.
+%     \begin{macrocode}
+\addtocontents{toc}{~\vspace{-1.6\baselineskip}\par\hfill Page\par}
+\setcounter{tocdepth}{4}
+%    \end{macrocode}
+%
+% Redefine the style for the \toc. First clear the page to
+% ensure that the page number for the \toc is correct,
+% then rename the \toc and add the \toc's own reference
+% to the \toc file.
+% Then, turn off hyphenation while typesetting the \toc.
+% Finally, do the rest of the commands
+% for typesetting the old \toc.
+%    \begin{macrocode}
+\let\oldtableofcontents\tableofcontents
+\def\tableofcontents{%
+  \clearpage
+  \renewcommand\contentsname{Table of Contents}
+  \addcontentsline{toc}{chapter}{TABLE OF CONTENTS}
+  \oldtableofcontents
+}
+%    \end{macrocode}
+%
+%
+% \subsubsection{Chapters}
+% Chapter entries use the |\titlecontents| macro from the |titletoc|
+% package for formatting. The chapter title has 0 inches of space
+% between the margin and the beginning of the \toc entry.
+% The \meta{above-code} argument ensures that the
+% entry will be single-spaced if more than one line
+% and sets the hanging indent for the chapter label to be equal to
+% the length of a |\quad| (i.e., |1em|), since the horizontal
+% spacing later on only applies to the first line.
+% |\filright| from the |titlesec| package is used to keep from 
+% justifying the \toc entry.
+% The next two fields, \meta{numbered-format} and
+% \meta{numberless-format} give the formatting for
+% numbered and unnumbered sections respectively.
+% Both of these specify that the section
+% title should be uppercase as the last argument.
+% The numbered version also pushes the
+% chapter title (via the |\contentspush| macro)
+% to the right to make space for and
+% typeset the chapter name and number, including a colon.
+% A |\quad| space is added after the chapter 
+% number to match the hanging indent already specified.
+% Note that the label is placed in an |\rlap| environment
+% to make chapter labels for chapters greater than 10
+% line up with the previous labels.
+% Then, the leader-line and page number are typeset.
+%    \begin{macrocode}
+\newlength{\normalparindent}
+\setlength{\normalparindent}{\parindent}
+\titlecontents{chapter}[0in]{%
+    \singlespacing\hangindent=1em\filright}%
+  {\contentspush{%
+      \MakeUppercase\@tocChapterName~%
+      \rlap{\thecontentslabel:}\hphantom{0:}}\quad%
+  }{}{\leaderStyle\contentspage}
+%    \end{macrocode}
+%
+% In order to capitalize the chapter titles in the
+% table of contents while maintaining
+% compatibility with the |hyperref| package,
+% the |\@chapter| macro is redefined to include
+% the |\MakeUppercase| directive included in the .toc file itself.
+% The |etoolbox| package is used. It contains a function,
+% |\patchcmd|, which searches for a string inside a
+% macro expansion and replaces it with a user-defined string.
+% This allows for the command to be modified
+% to include all-caps letters.
+% The command contains the text argument in two places;
+% therefore, two replacements need to be made.
+%    \begin{macrocode}
+\RequirePackage{etoolbox}
+\patchcmd{\@chapter}
+  {{chapter}{\protect \numberline {\thechapter }#1}}
+  {{chapter}{\protect \numberline {\thechapter }
+      {\texorpdfstring{\MakeUppercase{#1}}{#1}}}}{}{}
+\patchcmd{\@chapter}
+  {{chapter}{#1}}
+  {{chapter}
+    {\texorpdfstring{\MakeUppercase{#1}}{#1}}}{}{}
+%    \end{macrocode}
+%
+%
+% \subsubsection{Sections}
+% Similarly, the section headings are defined.
+% They are given a left indentation
+% of 0.5 inches and a negative vertical spacing of one line.
+% Since the space between lines is |-1.2\baselineskip| under
+% double-spacing, an adjustment is made of |-0.6\baselineskip|.
+% If more that one line, titles should be single-spaced.
+% |\filright| from the |\titlesec| package is used to keep from
+% justifying the \toc entry.
+% The section number should not be
+% printed in the \toc, so both \meta{numbered-format}
+% and \meta{numberless-format} are empty.
+% The leader-line and page number are typeset in the last argument.
+%    \begin{macrocode}
+\titlecontents{section}[0.5in]%
+  {\vspace{-0.6\baselineskip}\singlespacing\filright}{}{}%
+  {\leaderStyle\contentspage}
+%    \end{macrocode}
+%
+%
+% \subsubsection{Subsections}
+% The subsection has the same format as the Section title,
+% except that it is indented 1 inch on the left and is typeset in italics.
+% The page number is explicitly returned from being in italics
+% to normal text.
+%    \begin{macrocode}
+\titlecontents{subsection}[1in]%
+  {\vspace{-0.6\baselineskip}\singlespacing\itshape\filright}{}{}%
+  {\leaderStyle\textnormal{\contentspage}}
+%    \end{macrocode}
+%
+%
+% \subsubsection{Subsubsections}
+% The subsubsection has the same format as the Section title,
+% except that it is indented 1.5 inches on the left.
+%    \begin{macrocode}
+\titlecontents{subsubsection}[1.5in]%
+  {\vspace{-0.6\baselineskip}\singlespacing\filright}{}{}%
+  {\leaderStyle\contentspage}
+%    \end{macrocode}
+%
+%
+% \subsubsection{List of Tables/Figures}
+% The List of Figures and the List of Tables are unnumbered chapters
+% and therefore need to be capitalized separately.
+% The macros |\listfigurename| and |\listtablename| are
+% renewed to include the all-caps code.
+%    \begin{macrocode}
+\let\oldlistfigurename\listfigurename
+\renewcommand{\listfigurename}
+  {\texorpdfstring
+    {\MakeUppercase{\oldlistfigurename}}{\oldlistfigurename}}
+\let\oldlisttablename\listtablename
+\renewcommand{\listtablename}
+  {\texorpdfstring
+    {\MakeUppercase{\oldlisttablename}}{\oldlisttablename}}
+%    \end{macrocode}
+%
+% As with the \toc, a heading, labeled \textit{Page},
+% is desired above the page numbers on the right of the \lot and \lof.
+% Therefore, an entry is added to the table of contents, named
+% \textit{Page}, with horizontal space beforehand filled up and
+% a vertical offset.
+%     \begin{macrocode}
+\addtocontents{lot}{~\vspace{-1.6\baselineskip}\par\hfill Page\par}
+\addtocontents{lof}{~\vspace{-1.6\baselineskip}\par\hfill Page\par}
+%    \end{macrocode}
+%
+% Define styles for the |table| and |figure| environments.
+% Both should have single spacing and should not be justified.
+% A configurable space is reserved for the table or figure label.
+%    \begin{macrocode}
+\titlecontents{table}[\contents@labelwidth]{%
+    \singlespacing\filright}%
+  {\contentslabel{\contents@labelwidth}}{}%
+  {\leaderStyle\contentspage}
+%    \end{macrocode}
+%    \begin{macrocode}
+\titlecontents{figure}[\contents@labelwidth]{%
+    \singlespacing\filright}%
+  {\contentslabel{\contents@labelwidth}}{}%
+  {\leaderStyle\contentspage}
+%    \end{macrocode}
+%
+% We also want to remove the extra space placed between
+% chapters by default by the |\@chapter| macro.
+%    \begin{macrocode}
+\patchcmd{\@chapter}
+  {\addtocontents{lot}{\protect\addvspace{10\p@}}}
+  {{}}
+  {\typeout{Successfully patched @chapter}}
+  {\typeout{Failed to patch @chapter}}
+\patchcmd{\@chapter}
+  {\addtocontents{lof}{\protect\addvspace{10\p@}}}
+  {{}}
+  {\typeout{Successfully patched @chapter}}
+  {\typeout{Failed to patch @chapter}}
+%    \end{macrocode}
+%
+%
+% \subsection{Appendices}
+%
+% To add appendices to the document, the
+% package |appendix| is used. The |title| optional argument adds 
+% \textit{Appendix} to the appendix number in the text, and is active by default.
+%    \begin{macrocode}
+\RequirePackage[title]{appendix}
+%    \end{macrocode}
+% 
+% The appendices environment is redefined to include a redefinition of the
+% |\@tocChapterName| macro, as described above. The |\appendices| macro, 
+% used when beginning an |\appendices| environment, has an macro appended
+% to its end using a |\let|-|\def| structure and a temporary macro.
+% The |\@appendixmatter| macro contains formatting instructions for the appendices
+% and is defined below.
+%    \begin{macrocode}
+\let\oldappendices\appendices
+\def\appendices{\oldappendices\@appendixmatter}
+%    \end{macrocode}
+%
+%
+% \subsection{Paper Sectioning}
+%
+% In order to provide different formats for different sections of the paper, the macros
+% |\frontmatter|, |\mainmatter|, and |\backmatter| are introduced.
+%
+% \begin{macro}{\frontmatter}
+% Ensure a new page starts and reset page numbers with roman numerals.
+%    \begin{macrocode}
+\newcommand{\frontmatter}{%
+  \clearpage\pagenumbering{roman}%
+  \renewcommand{\@chapterFontStyle}{\normalfont}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\mainmatter}
+% Ensure a new page starts and reset page numbers with roman numerals.
+% Also, set the |\@chapterFontStyle| macro to change the format of the chapter
+% titles to be bold-face.
+%    \begin{macrocode}
+\newcommand{\mainmatter}{%
+  \clearpage\pagenumbering{arabic}%
+  \renewcommand{\@chapterFontStyle}{\bfseries}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\backmatter}
+% Set the |\@chapterFontStyle| macro to change the format of the chapter
+% titles to be regular font.
+%    \begin{macrocode}
+\newcommand{\backmatter}{%
+  \renewcommand{\@chapterFontStyle}{\normalfont}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@appendixmatter}
+% The |\@appendixmatter| macro is appended to the appendix environment and 
+% sets the |\@chapterFontStyle| macro to change the format of the chapter
+% titles to be bold-face, like the mainmatter.
+% The |\@appendixmatter| macro also inserts a command into the generated
+% .toc file to give the \toc a new value for the |\@tocChapterName| macro.
+% The |\protect| macros ensure that the following macros are added to the .toc
+% file as-is without expansion.
+%    \begin{macrocode}
+\newcommand{\@appendixmatter}{%
+  \renewcommand{\@chapterFontStyle}{\bfseries}
+  \addtocontents{toc}%
+  {\protect\renewcommand*{\protect\@tocChapterName}%
+    {\protect\appendixname}}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Environments}
+% \subsubsection{Tables}
+% Formal table formatting is used from the |booktabs| package. Additionally,
+% the |longtable| package is used for tables spanning multiple pages. Then,
+% redefine the default width of the caption field for the |longtable| environment.
+%    \begin{macrocode}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\setlength{\LTcapwidth}{\textwidth}
+%    \end{macrocode}
+% Define a new macro for a single thin line above the |longtable| entry for text
+% continued on the next page. Also, define a macro to set the desired spacing
+% format for text within cells. The redefinition of |\arraystretch| further adjusts
+% the vertical spacing between adjacent cells.
+%    \begin{macrocode}
+\newcommand{\continuerule}{
+  \specialrule{\lightrulewidth}{\aboverulesep}{\belowbottomsep}
+}
+\newcommand{\settablespacingformat}{
+  \onehalfspacing
+  \renewcommand{\arraystretch}{1.2}
+}
+%    \end{macrocode}
+% Require the package |xargs| to create an environment with non-standard
+% optional arguments. Then define the |thesistable| environment, with the
+% first and third arguments specified as optional. These arguments will have a default
+% value that expands to the |\relax| macro.
+% Several macros are defined, that when expanded, will evaluate to the same thing if
+% the optional arguments were not provided.
+%    \begin{macrocode}
+\RequirePackage{xargs}
+\newenvironmentx{thesistable}[6][1=\relax, 3=\relax]{
+  \def\given@placement{#1}
+  \def\default@placement{\relax}
+%    \end{macrocode}
+% A macro for the figure's caption is created containing only the \meta{caption}
+% argument if the \meta{lofCaption} argument was not provided. Otherwise, the
+% optional argument is passed along to the |\caption| command.
+%    \begin{macrocode}
+  \ifx\relax#3
+    \def\table@caption{\caption{#4}}
+  \else
+    \def\table@caption{\caption[#3]{#4}}
+  \fi
+%    \end{macrocode}
+% The type of table requested is checked based on the presence or absence of the 
+% first optional command. If the float placement argument was not provided, start
+% a |longtable| environment with specified width, caption, and label.
+%    \begin{macrocode}
+  \ifx\given@placement\default@placement
+    \typeout{Typesetting environment thesistable as a longtable.}
+    \settablespacingformat
+    \begin{longtable}[c]{#2}
+    \table@caption\label{#5} \\
+%    \end{macrocode}
+% Set the formatting and content for the header row on the first page the table appears.
+%    \begin{macrocode}
+    \toprule
+    #6 \\
+    \midrule \endfirsthead
+%    \end{macrocode}
+% Set the formatting and content for the header row on any subsequent pages on which
+% the table appears. These headers should contain the table number with a note that
+% the table is being continued from a previous page. This text is placed within another
+% |\caption| command with an empty optional argument to ensure that this second caption
+% is not listed in the List of Tables. The table number references itself via the |\nameref|
+% macro and the fifth argument, \meta{label}.
+%    \begin{macrocode}
+    \caption[]{\nameref{#5} 
+        \hfill\mbox{ -- \textit{Continued from previous page}}}\\ [-1ex]
+    \toprule
+    #6 \\
+    \midrule \endhead
+%    \end{macrocode}
+% Footers for any page but the last one contain a note that the table is continued on a subsequent
+% page. These rows contain a lighter rule than the |\bottomrule| that ends the table.
+%    \begin{macrocode}
+    \continuerule
+    \multicolumn{\LT@cols}{r}{\textit{Continued on next page}} \\
+    \endfoot
+%    \end{macrocode}
+% Finally, the |longtable| format is finished by specifying the format for the final row of the table.
+%    \begin{macrocode}
+    \bottomrule \endlastfoot
+%    \end{macrocode}
+% After completing the header information for the |longtable| environment, the format for the
+% floating table must also be specified. The |\else| command completes the if statement above
+% that checked the existence of the first optional argument.
+%    \begin{macrocode}
+  \else
+    \typeout{Typesetting environment thesistable as a tabular.}
+    \begin{table}[#1]\centering
+    \settablespacingformat
+    \table@caption\label{#5}
+    \vspace{\baselineskip}
+    \begin{tabular}{#2}
+%    \end{macrocode}
+% Define the formatting for the header row. Then finish the if statement and the first argument
+% that specifies the beginning of the |thesistable| environment.
+%    \begin{macrocode}    
+    \toprule
+    #6 \tabularnewline
+    \midrule
+  \fi
+}
+%    \end{macrocode}
+% The second argument of the |thesistable| environment declares how to end the environment.
+% An if-statement, similar to the first part, is used to either wrap up the |longtable| or the
+% |tabular| and |table| depending on which one was created.
+%    \begin{macrocode}
+{
+  \ifx\given@placement\default@placement
+    \end{longtable}
+  \else
+    \bottomrule
+    \end{tabular}
+    \end{table}
+  \fi
+}
+%    \end{macrocode}
+%
+%
+% \subsection{Graphics Commands}
+%
+% \begin{macro}{\includegraphics}
+% Use the |\includegraphics| command from the |graphicx| package.
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\includediagram}
+% For Ti\emph{k}Z diagrams, use the |standalone| package and create a wrapper macro.
+%    \begin{macrocode}
+\RequirePackage{standalone}
+\newcommand{\includediagram}[1]{\includestandalone[mode=buildnew]{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\includeplot}
+% For MATLAB plots exported using LaPrint, use the |pstool| package and create
+% a wrapper macro.
+%    \begin{macrocode}
+\RequirePackage[crop=pdfcrop]{pstool}
+\newcommand{\includeplot}[2][]{\psfragfig[#1]{#2}{}}
+%    \end{macrocode}
+% \end{macro}
+% 
+%
+% \subsection{Other Spacing}
+% Using the double-spaced formatting causes the spacing around equations to be messed up.
+% The |\normalsize| macro is redefined to update the equation spacing. The skip spaces
+% before and after equations are defined with 3pts of stretchable length. If needed, \LaTeX{}
+% will be able to add up to 3pt separation between the body text and the equation to space
+% large equations well (e.g., those with integrals or matrices).
+%    \begin{macrocode}
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{0pt plus 3pt}
+  \setlength\belowdisplayskip{0pt plus 3pt}
+  \setlength\abovedisplayshortskip{0pt plus 3pt}
+  \setlength\belowdisplayshortskip{0pt plus 3pt}
+}
+%    \end{macrocode}
+% Additionally, the |\jot| and |\arraystrech| values are redefined to adjust the spacing
+% between equations and the spacing inside matrices, respectively.
+%    \begin{macrocode}
+\setlength{\jot}{-1ex}
+\renewcommand*\arraystretch{.6}
+%    \end{macrocode}
+%
+%
+% \subsection{Footnotes}
+% To help with formatting for footnotes, the |footmisc| package is used.
+% This package is loaded with several options that define the base footnote formatting.
+% The option |multiple| places a comma between two footnotes placed at the same spot.
+% The option |hang| formats the footnotes as hanging paragraphs.
+% The option |perpage| resets the numbering of the footnotes on each page.
+% (Note that pdfLaTeX may need to be run twice to correctly place and number
+% all footnotes on the correct pages.)
+% The option |symbol*| uses a set of symbols instead of numerals to number the footnotes.
+% The |bottom| option ensures that footnotes are typeset
+% below floats.
+% The |stable| option keeps |footmisc| from
+% including footnotes that appear in section titles in the \toc.
+%    \begin{macrocode}
+\RequirePackage[multiple,hang,perpage,symbol*,bottom,stable]{footmisc}
+%    \end{macrocode}
+%
+% Footnotes are made the same size as the rest of the document.
+% The left margin is decreased to 1em to place the footnote closer to the symbol.
+% The original footnote separation is saved for a future calculation, and the footnote separation
+% is increased to the value |\baselineskip| to place double spacing between footnotes.
+% Note, if the footnote font is less than |\normalsize|, the |\footnotesep| should similarly be
+% decreased, as it seems to be set on the |\baselineskip| of the main text.
+% The |\footnotesep| should be specified as greater or equal to the default value of 8.4 points.
+%    \begin{macrocode}
+\let\footnotesize\normalsize
+\setlength{\footnotemargin}{1em}
+\newlength{\@defaultfootsep}
+\setlength{\@defaultfootsep}{\footnotesep}
+\setlength{\footnotesep}{\baselineskip}
+%    \end{macrocode}
+%
+% \begin{macro}{\@footnoteheadspace}
+% The absolute amount of space between the footnote text and the rule above is tuned with the macro
+% |\footnoteheadspace|. Both the default footnote separation |\skip\footins| and 
+% |0.4\baselineskip| look nice.
+%    \begin{macrocode}
+\newlength{\@footnoteheadspace}
+\setlength{\@footnoteheadspace}{\skip\footins}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@footnoteheadspaceadjust}
+% An expression is saved for the adjustment factor for the kerning of the footnote rule.
+% Values were determined from trial-and error and linear relationships, and when simplified, resulted in
+% unit multiples of several macros. With |\@footnoteheadspace| set to zero, the footnote rule should be directly
+% on top of the footnote text. The formula seems to depend on the difference between the footnote separation
+% and the default separation, because setting the footnote separation below the default value seems to have
+% no effect on the spacing of the typeset output. The exact value at which changes no longer make differences
+% may need to be further tuned for exact placement of the rule.
+%    \begin{macrocode}
+\newlength{\@footnoteheadspaceadjust}
+\setlength{\@footnoteheadspaceadjust}%
+{\dimexpr \footnotesep - \@defaultfootsep - \@footnoteheadspace}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@footnoteruleheight}
+% The thickness of the footnote rule is defined in the |\@footnoteruleheight| macro.
+%    \begin{macrocode}
+\newlength{\@footnoteruleheight}
+\setlength{\@footnoteruleheight}{0.4pt}
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\footnoterule}
+% Create the footnote rule, adjusting the kerning beforehand to place the rule at the correct spot and 
+% adjusting the kerning afterwards to return to the previous spot while adjusting for the rule thickness.
+%    \begin{macrocode}
+\renewcommand{\footnoterule}{%
+  \kern \@footnoteheadspaceadjust 
+  \hrule width \textwidth height \@footnoteruleheight
+  \kern\dimexpr -\@footnoteheadspaceadjust-\@footnoteruleheight \relax
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \Finale
+%
+%
+% \typeout{****************************************************}
+% \typeout{*}
+% \typeout{* To finish the installation you have to move the}
+% \typeout{* following file into a directory searched by TeX:}
+% \typeout{*}
+% \typeout{* \space\space letuThesis.sty}
+% \typeout{*}
+% \typeout{* To produce the documentation run the file}
+% \typeout{* letuThesis.dtx through LaTeX.}
+% \typeout{*}
+% \typeout{* Happy TeXing!}
+% \typeout{*}
+% \typeout{****************************************************}
+\endinput
+
+%% Create changelog and index using:
+%% makeindex -s gind.ist -o letuThesis.ind letuThesis.idx && makeindex -s gglo.ist -o letuThesis.gls letuThesis.glo
+
+

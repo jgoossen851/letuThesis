@@ -1,0 +1,15 @@
+% providecommand redefines the command only if not already defined.
+% This is useful to define a different path to other files for subfiles compared to the main thesis.
+\providecommand{\main}{..} % Relative path of the main thesis (`..` represents the parent directory)
+\providecommand{\figures}{\main/figures}
+
+% The subfiles document class uses the preamble from the file in the optional argument. Don't repeat it.
+\documentclass[\main/ExampleThesis]{subfiles}
+
+\begin{document}
+
+\unpacklipsum[140][6] % Unpack 1 sentence of lipsum text for use in the appendix title
+\chapter{\lipsumexp}
+\lipsum[11]
+
+\end{document}

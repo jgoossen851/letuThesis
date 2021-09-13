@@ -1,0 +1,65 @@
+% providecommand redefines the command only if not already defined.
+% This is useful to define a different path to other files for subfiles compared to the main thesis.
+\providecommand{\main}{..} % Relative path of the main thesis (`..` represents the parent directory)
+\providecommand{\figures}{\main/figures}
+
+% The subfiles document class uses the preamble from the file in the optional argument. Don't repeat it.
+\documentclass[\main/ExampleThesis]{subfiles}
+
+\begin{document}
+
+\chapter{Samples for Tables}
+\label{ch:tables}
+
+\section{Floating Tables}
+
+This page contains a sample table. The first table is typeset as a ``float,'' which is able move relative to the text. It cannot span more than one page.
+
+\begin{thesistable}[htbp]
+{c c c}
+[A Simple Table]
+{A Simple Table. Note that this table has some extra information added to the caption at this point in the text, but this extra text will not appear in the List of Tables.}
+{tab:sampletable}
+{First & Second & Third}
+Data 1 & Data 2 & Data 3 \\
+Data 4 & Data 5 & Data 6 \\
+\end{thesistable}
+
+\section{Long Tables}
+
+This second table is a typeset as a ``longtable'' and is typeset in the exact location it appear in the running text. It is able to span more than one page.
+
+\begin{thesistable}
+{c c c}
+{A Long Table Which Spans More than One Page}
+{tab:sampletable}
+{Number & Letter & NATO Phonetic Alphabet \cite{nato18}}
+1 & A & Alfa \\
+2 & B & Bravo \\
+3 & C & Charlie \\
+4 & D & Delta \\
+5 & E & Echo \\
+6 & F & Foxtrot \\
+7 & G & Golf \\
+8 & H & Hotel \\
+9 & I & India \\
+10 & J & Juliett \\
+11 & K & Kilo \\
+12 & L & Lima \\
+13 & M & Mike \\
+14 & N & November \\
+15 & O & Oscar \\
+16 & P & Papa \\
+17 & Q & Quebec \\
+18 & R & Romeo \\
+19 & S & Sierra \\
+20 & T & Tango \\
+21 & U & Uniform \\
+22 & V & Victor \\
+23 & W & Whiskey \\
+24 & X & Xray \\
+25 & Y & Yankee \\
+26 & Z & Zulu \\
+\end{thesistable}
+
+\end{document}
